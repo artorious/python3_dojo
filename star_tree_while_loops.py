@@ -12,23 +12,12 @@ Height = 6
                 *********
                ***********
 '''
+from custom_modules.get_positive_number_from_user import get_positive_num
 
 print(__doc__) # Program Greeting
 # init
 row= 0  # Draw one row for every unit of height
-valid_value = False
-
-##------ Get tree height (positive integer) from user ------- ###
-while not valid_value:
-    try:
-        height = int(input('Enter height of tree: '))  # Enter height value
-        if height > 0:
-            valid_value = True # Terminate loop after getting a valid value
-        else:
-            print('Please enter a positive integer')
-            continue # Try entering value again
-    except ValueError:
-        print('Expected integers...')
+height = int(get_positive_num()) # Get tree height (positive integer) from user
 
 ###---- Printing Tree ----###
 
