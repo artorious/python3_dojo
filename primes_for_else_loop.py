@@ -5,10 +5,13 @@ Note:
     are 1 and the number itself
 '''
 from custom_modules.get_positive_number_from_user import get_positive_num
+from time import clock
 
 print(__doc__) # Program Greeting
-# init --Get positive integer from user
-max_value = int(get_positive_num())
+# init 
+max_value = int(get_positive_num()) # Get positive integer from user
+cntr = 0 # Prime accumulator
+start_stopwatch = clock()   # Start timer
 
 ##------- The Algorithm -------- ##
 # Try values from 2 (smallest prime) to max_value (inclusive)
@@ -20,7 +23,10 @@ for potential_prime in range(2, max_value + 1):
             break      # no need to continue
     else:
         print(potential_prime, end=' ')  # Display prime
+        cntr += 1 # Track total primes found
 print() # Move cursor to the next line
-        
+stop_stopwatch = clock() - start_stopwatch # Stop timer
+print('It takes {0} secs to identify {1} prime numbers'.format(stop_stopwatch, cntr))
+
     
 
