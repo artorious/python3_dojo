@@ -11,10 +11,7 @@ from custom_modules.get_positive_number_from_user import get_positive_num
 print(__doc__) # Program Greeting
 # Init 
 root = 1.0  # Provisional square root
-
-
 value = get_positive_num() # Get positive Float from user 
-
 difference = (root * root) - value  # How far off is our provisional root
 
 ##--- Loop until the provisional root is close enough to the actual root ----###
