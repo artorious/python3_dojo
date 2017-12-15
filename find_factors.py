@@ -1,22 +1,11 @@
 #!/usr/bin/env python3
 '''Prints all the integers and their associated factors from 1-n'''
+from custom_modules.get_positive_number_from_user import get_positive_num
 
+print(__doc__) # Program Greeting
 # init
 count = 1 # Start from 1 (The numbers being examined)
-valid_value = False
-
-##------ Get positive integer from user ------- ###
-while not valid_value:
-    try:
-        value = int(input('Enter an integer Value: '))  # Enter Max value
-        if value > 0:
-            valid_value = True # Terminate loop after getting a valid value
-        else:
-            print('Please enter a positive integer')
-            continue # Try entering value again
-
-    except ValueError:
-        print('Expected integers...')
+value = int(get_positive_num()) # Get positive integer from user 
 
 ##------- The Algorithm -------- ##
 
