@@ -4,28 +4,19 @@ Note:
     A prime number is an integer greater than 1 whose only factors (divisors)
     are 1 and the number itself
 '''
+from custom_modules.get_positive_number_from_user import get_positive_num
+
 print(__doc__) # Program Greeting
 # init
 current_potential_prime = 2 # Smallest prime
-valid_value = False
+max_value = int(get_positive_num())
 
-##------ Get positive integer from user ------- ###
-while not valid_value:
-    try:
-        max_value = int(input('Enter an integer Value: '))  # Enter Max value
-        if max_value > 0:
-            valid_value = True # Terminate loop after getting a valid value
-        else:
-            print('Please enter a positive integer')
-            continue # Try entering value again
-
-    except ValueError:
-        print('Expected integers...')
 
 ##------- The Algorithm -------- ##
 
 while current_potential_prime <= max_value:
     is_prime = True     # Provisionally, Assume value is prime
+    
     # Try all possible factors from 2 to current_potential_prime - 1
     trial_factor = 2 # Track potential factors
     
