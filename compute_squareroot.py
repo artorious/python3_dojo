@@ -6,23 +6,14 @@ Strategy:
         If it is close enough to the correct answer, STOP.
     3. Make new guess that will produce a better result & proceed with step 2
 '''
+from custom_modules.get_positive_number_from_user import get_positive_num
+
 print(__doc__) # Program Greeting
 # Init 
 root = 1.0  # Provisional square root
-valid_value = False
 
-##------ Get positive Int/Float from user ------- ###
-while not valid_value:
-    try:
-        value = float(input('Enter a Value: '))  # Enter value
-        if value > 0:
-            valid_value = True # Terminate loop after getting a valid value
-        else:
-            print('Please enter a positive integer')
-            continue # Try entering value again
 
-    except ValueError:
-        print('Expected Integers or Floating-point numbers')
+value = get_positive_num() # Get positive Float from user 
 
 difference = (root * root) - value  # How far off is our provisional root
 
