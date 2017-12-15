@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''Prompt user for a positve number ( integer or floating-point number).
-Returns the value
+Returns  value (float)
 '''
 
 def get_positive_num():
