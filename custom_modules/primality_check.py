@@ -8,7 +8,7 @@ Note:
 """
 
 from math import sqrt
-from get_positive_number_from_user import get_positive_num
+from custom_modules.get_positive_number_from_user import get_positive_num
 
 ##################################################################################################
 
@@ -27,7 +27,7 @@ def is_prime(the_integer):
                 return False                        # Found a Factor
         return True                                 # No factors found
     else:
-        return 'Expected an integer. {0} no surpported'.format(type(the_integer))
+        return 'Expected an integer. {0} not surpported'.format(type(the_integer))
     
 
 ######################################################################################################

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """GCD-Compute greatest common factor of two integers provided by the user"""
 
-from get_integer_from_user import get_integer
+from custom_modules.get_integer_from_user import get_integer
 
 
 def gcd(num1, num2):
@@ -23,11 +23,11 @@ def gcd(num1, num2):
 if __name__ == '__main__':
     print(__doc__)
     # Init
-    print('First Integer ->', end=' ')
-    n1 = get_integer()
+    print('First Integer ->', end= ' ')
+    arg1 = get_integer()
     print()
     print('Second Integer ->', end=' ')
-    n2 = get_integer()
+    arg2 = get_integer()
     print()
-    print('gcd({0} and {1}) = {2}'.format(n1, n2, gcd(n1, n2)), end=' ')
-    print(type(gcd(n1, n2)))
+    print('gcd({0} and {1}) = {2}'.format(arg1, arg2, gcd(arg1, arg2)))
+    print(type(gcd(arg1, arg2)))
