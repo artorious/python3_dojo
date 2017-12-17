@@ -4,7 +4,10 @@ Returns  value (float)
 '''
 
 def get_positive_num():
-    '''Prompt user for a positive number (integer or floating-point number)'''
+    '''
+    Prompt user for a positive number (integer or floating-point number)
+    Returns the float
+    '''
     # init
     valid_value = False
 

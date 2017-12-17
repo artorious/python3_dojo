@@ -12,7 +12,6 @@ def help_screen():
     Accepts no parameters
     Returns nothing
     """
-   
     print('-' * 60)
     print(format('| {0} |', '-^30').format(__doc__))
     print('-' * 60)
@@ -29,7 +28,6 @@ def help_screen():
     print('Operation 0: Help (Displays this help screen)')
     print('Operation -1: Exit Calculator')    
     print('-' * 60)
-
 
 def menu():
     """Displays Arithmetic  Menu Options.
@@ -63,25 +61,74 @@ def arithmetic_ops():
         
         elif op_selection == 1: # Add
             print(format(' ADDITITION (x+y) ', '|^60'))
-            arg1 = get_float()
+            # Init
+            arg1 = get_float() 
             arg2 = get_float()
-            latest_result = add_two(arg1, arg2) # Store result
-            print('{0:,} + {1:,} = {2:,}'.format(arg1, arg2, latest_result))
-
+            print()
+            latest_result = add_two(arg1, arg2) # Store latest result
+            print('{0:,} + {1:,} = {2:,}'.format(arg1, arg2, latest_result)) # Display operation
             print(format(' RESULT ', '|^60'))
         
         elif op_selection == 2: # Subtraction
-            pass
+            print(format(' SUBTRACTION (x-y) ', '|^60'))
+            # Init
+            arg1 = get_float() 
+            arg2 = get_float()
+            print()
+            latest_result = subtract_two(arg1, arg2) # Store latest result
+            print('{0:,} - {1:,} = {2:,}'.format(arg1, arg2, latest_result)) # Display operation
+            print(format(' RESULT ', '|^60'))
+
         elif op_selection == 3: # Multiply
-            pass
+            print(format(' MULTIPLY (x*y) ', '|^60'))
+            # Init
+            arg1 = get_float() 
+            arg2 = get_float()
+            print()
+            latest_result = multiply_two(arg1, arg2) # Store latest result
+            print('{0:,} * {1:,} = {2:,}'.format(arg1, arg2, latest_result)) # Display operation
+            print(format(' RESULT ', '|^60'))
+
         elif op_selection == 4: # Division
-            pass
+            print(format(' INTEGER DIVISION (x/y) ', '|^60'))
+            # Init
+            arg1 = get_float() 
+            arg2 = get_float()
+            print()
+            latest_result = divide(arg1, arg2) # Store latest result
+            print('{0} / {1} = {2}'.format(arg1, arg2, latest_result)) # Display operation
+            print(format(' RESULT ', '|^60'))
+
         elif op_selection == 5: # Exponentiate
-            pass
+            print(format(' EXPONENTION (x**y) ', '|^60'))
+            # Init
+            arg1 = get_float() 
+            arg2 = get_float()
+            print()
+            latest_result = exp_two(arg1, arg2) # Store latest result
+            print('{0:,} ** {1:,} = {2:,}'.format(arg1, arg2, latest_result)) # Display operation
+            print(format(' RESULT ', '|^60'))
+
         elif op_selection == 6: # Truncation Div
-            pass
+            print(format(' FLOOR DIVISION (x//y) ', '|^60'))
+            # Init
+            arg1 = get_float() 
+            arg2 = get_float()
+            print()
+            latest_result = floor_div(arg1, arg2) # Store latest result
+            print('{0:,} // {1:,} = {2:,}'.format(arg1, arg2, latest_result)) # Display operation
+            print(format(' RESULT ', '|^60'))
+
         elif op_selection == 7: # Modulo div
-            pass
+            print(format(' MODULO DIVISION (x%y) ', '|^60'))
+            # Init
+            arg1 = get_float() 
+            arg2 = get_float()
+            print()
+            latest_result = modulo_div(arg1, arg2) # Store latest result
+            print('{0} % {1} = {2}'.format(arg1, arg2, latest_result)) # Display operation
+            print(format(' RESULT ', '|^60'))
+
         elif op_selection == 8: # gcd
             print(format(' GCD(x,y) ', '|^60'))
             arg1 = get_integer()
@@ -92,13 +139,15 @@ def arithmetic_ops():
 
         elif op_selection == 9: # primality
             print(format(' PRIME? (True/False) ', '|^60'))
-            arg1 = get_positive_num()
+            arg1 = int(get_positive_num())
+            print()
             latest_result =  is_prime(arg1)
             print('{0:,} is prime? - {1} '.format(arg1, latest_result))
             print(format(' RESULT ', '|^60'))
         
         else:   # print
-            pass
+            print('latest_result: {0}'.format(latest_result) )
+            
 
 def add_two(arg1, arg2):
     """(float, float) -> float
@@ -108,10 +157,7 @@ def add_two(arg1, arg2):
     try:
         return arg1 + arg2
     except TypeError:
-        return 'Unsupported operation: {0} + {1} '.format(arg1, repr(arg2))
-    
-
-                           
+        return 'Unsupported operation: {0} + {1} '.format(type(arg1), type(arg2))
 
 def multiply_two(arg1, arg2):
     """(float, float) -> float
@@ -121,7 +167,7 @@ def multiply_two(arg1, arg2):
     try:
         return arg1 * arg2
     except TypeError:
-        return 'Unsupported operation: {0} * {1} '.format(arg1, repr(arg2))
+        return 'Unsupported operation: {0} * {1} '.format(type(arg1), type(arg2))
 
 def subtract_two(arg1, arg2):
     """(float, float) -> float
@@ -131,7 +177,7 @@ def subtract_two(arg1, arg2):
     try:
         return arg1 - arg2
     except TypeError:
-        return 'Unsupported operation: {0} - {1} '.format(arg1, repr(arg2))
+        return 'Unsupported operation: {0} - {1} '.format(type(arg1), type(arg2))
 
 def divide(arg1, arg2):
     """(float, float) -> float
@@ -141,7 +187,11 @@ def divide(arg1, arg2):
     try:
         return arg1 / arg2
     except TypeError:
-        return 'Unsupported operation: {0} / {1} '.format(arg1, repr(arg2))
+        return 'Unsupported operation: {0} / {1} '.format(type(arg1), type(arg2))
+    except ZeroDivisionError as zero_error:
+        return 'Unsupported operation: {0} / {1} -> {2}'.format(arg1, arg2, zero_error)
+    except Exception as other_error:
+        return 'Oops... {0}'.format(other_error)
 
 def floor_div(arg1, arg2):
     """(float, float) -> float
@@ -151,7 +201,7 @@ def floor_div(arg1, arg2):
     try:
         return arg1 + arg2
     except TypeError:
-        return 'Unsupported operation: {0} // {1} '.format(arg1, repr(arg2))
+        return 'Unsupported operation: {0} // {1} '.format(type(arg1), type(arg2))
 
 def exp_two(arg1, arg2):
     """(float, float) -> float
@@ -161,7 +211,21 @@ def exp_two(arg1, arg2):
     try:
         return arg1 ** arg2
     except TypeError:
-        return 'Unsupported operation: {0} ** {1} '.format(arg1, repr(arg2))
+        return 'Unsupported operation: {0} ** {1} '.format(type(arg1), type(arg2))
+
+def modulo_div(arg1, arg2):
+    """(float, float) -> float
+    Modulo division of  two numbers
+    Returns  (arg1 % arg2)
+    """
+    try:
+        return arg1 % arg2
+    except TypeError:
+        return 'Unsupported operation: {0} % {1} '.format(type(arg1), type(arg2))
+    except ZeroDivisionError as zero_error:
+        return 'Unsupported operation: {0} % {1} -> {2}'.format(arg1, arg2, zero_error)
+    except Exception as other_error:
+        return 'Oops... {0}'.format(other_error)
 
 if __name__ == '__main__':
     arithmetic_ops()
