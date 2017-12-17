@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
-'''Prompt user for an integer '''
+"""Prompt user for an integer 
+"""
 
 def get_integer():
-    '''Prompt user for an integer'''
+    """Prompt user for an integer
+    Returns the integer
+    """
     # init
     valid_value = False
 
     while not valid_value:
         try:
-            value = int(input('Enter an integer: '))  
+            value = int(input('Enter number: '))  
             valid_value = True # Terminate loop after getting a valid value
         except ValueError:
             print('Expected a number')
@@ -17,7 +20,8 @@ def get_integer():
     return value
 
 if __name__ == '__main__':
-    get_integer()
+    print(__doc__)
+    print(type(get_integer()))
 
 
 

@@ -13,19 +13,22 @@ from get_positive_number_from_user import get_positive_num
 ##################################################################################################
 
 def is_prime(the_integer):
-    """
+    """(int) -> bool
     Determines the primality of a given value <the_integer>, an integer.
     Returns True if <the_integer>, otherwise, returns False
     """
+    if isinstance(the_integer, int):
+        # Try potential factors from 2 (smallest prime) to the square root of <the_integer> (inclusive)
+        # Use of squareroot to increase program efficiency (Instead of Trying values from 2  to <the_integer> (inclusive))
+        root = round(sqrt(the_integer)) + 1 
 
-    # Try potential factors from 2 (smallest prime) to the square root of <the_integer> (inclusive)
-    # Use of squareroot to increase program efficiency (Instead of Trying values from 2  to <the_integer> (inclusive))
-    root = round(sqrt(the_integer)) + 1 
-
-    for trial_factor in range(2, root):
-        if the_integer % trial_factor == 0:     # Is it a factor
-            return False                        # Found a Factor
-    return True                                 # No factors found
+        for trial_factor in range(2, root):
+            if the_integer % trial_factor == 0:     # Is it a factor
+                return False                        # Found a Factor
+        return True                                 # No factors found
+    else:
+        return 'Expected an integer. {0} no surpported'.format(type(the_integer))
+    
 
 ######################################################################################################
 
