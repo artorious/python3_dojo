@@ -1,31 +1,19 @@
 #!/usr/bin/env
-'''Turle Graphics Examples'''
+'''Draw random sized polygons'''
 
 import turtle
 import random
-
-def polygon(sides, length, x_pos, y_pos, color):
-    '''Draw a regular polygon with the given number of <sides>
-    of <length>. Pen begins at point(<x_pos>, <y_pos>) and is <color>
-    '''
-    turtle.bgcolor('black')
-    turtle.penup()
-    turtle.setposition(x_pos, y_pos)
-    turtle.pendown()
-    turtle.color(color)
-    turtle.begin_fill()
-    
-    for poly_sides in range(sides):
-        turtle.forward(length)
-        turtle.left(360 // sides)
-    turtle.end_fill()
+from custom_modules.turtle_templates import polygon
+from custom_modules.get_positive_number_from_user import get_positive_num
 
 # Disable rendering to speed up drawing
 turtle.hideturtle()
 turtle.tracer(0)
 
-#### Draw random polygons
-for a_polygon in range(20): # 20 polygons
+print('How many random polygons')
+how_many = int(get_positive_num()) 
+
+for a_polygon in range(how_many):   # call polygon() 
     polygon(
         random.randrange(3, 11),        # 3-11 sides
         random.randrange(10, 51),       # length ranges
