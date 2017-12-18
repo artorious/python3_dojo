@@ -27,15 +27,26 @@ def polygon(sides, length, x_pos, y_pos, color, fill=False):
 
     except TypeError as err1:
         return err1
-    except Exception as err2:
+    except Exception as err2: # Handle TurtleGraphicsError
         return err2
 
     
 def draw_horizontal_lines(how_many, length, y_pos, color):
     """ (int, int, int, str) -> turtle
-    Draws <how_many> horizontal lines of <length> of <color> stacked on top
+    Draws <how_many> <color> horizontal lines of <length> stacked on top
     of each other with the lowest line appearing at position <y_pos> on the 
     y-axis . 
     """
-    pass
+    try:
+        turtle.color(color)
+        for line in range(how_many):
+            turtle.penup()
+            turtle.setposition(-200, y_pos)
+            turtle.pendown()
+            turtle.forward(length)
+            y_pos += 10
 
+    except TypeError as err1:
+        return err1
+    except Exception as err2: # Handle TurtleGraphicsError
+        return err2
