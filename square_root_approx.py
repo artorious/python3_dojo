@@ -8,6 +8,7 @@ Note: The strategy;
     3. Make new guess that will produce a better result & proceed with step 2
 """
 from custom_modules.get_positive_number_from_user import get_positive_num
+from custom_modules.floating_point_equality_func import float_equality
 
 def square_root(value):
     """ (float) -> float
@@ -31,15 +32,16 @@ if __name__ == '__main__':
     print(format(' Compare Approx roots and actual roots ', '|^60'))
 
     # Init
-    start_point = 1.0 # Set point to begin
+    start_point = 0.0 # Set point to begin
     print('Calculate the roots up to (Max Value) : ', end=' ')
     max_value = get_positive_num() # Get positive Float from user
     print()
-    print(' Value  :  Approximate root :  Actual root ')
-    print('_' * 60)
-    while start_point <= max_value:
-        print('{0:6.1f} : {1:16.8f} : {2:16.8f} '.format(start_point, square_root(start_point), sqrt(start_point)))
-        start_point += 0.5  # next value
 
+    while start_point < max_value:
+        if not float_equality(square_root(start_point), sqrt(start_point), 0.001):
+            print('** Difference detected for', start_point)
+            print(' Expected', sqrt(start_point))
+            print(' Computed', square_root(start_point))
+        start_point += 0.0001 # Consider next value
 
 
