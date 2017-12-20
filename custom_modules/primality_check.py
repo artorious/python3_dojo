@@ -8,7 +8,7 @@ Note:
 """
 
 from math import sqrt
-from custom_modules.get_positive_number_from_user import get_positive_num
+from get_positive_number_from_user import get_positive_num
 
 ##################################################################################################
 

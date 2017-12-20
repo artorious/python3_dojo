@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """A simple calculator"""
-from custom_modules.get_integer_from_user import get_integer
-from custom_modules.get_float_from_user import get_float
-from custom_modules.get_positive_number_from_user import get_positive_num
-from custom_modules.primality_check import is_prime
-from custom_modules.gcd_program import gcd
-from custom_modules.get_integer_in_range import get_int_in_range
+from get_integer_from_user import get_integer
+from get_float_from_user import get_float
+from get_positive_number_from_user import get_positive_num
+from primality_check import is_prime
+from gcd_program import gcd_recursive
+from get_integer_in_range import get_int_in_range
 
 # init global variables
 global latest_result, arg1, arg2, operator
@@ -157,7 +157,7 @@ def arithmetic_ops():
             arg1 = get_integer()
             arg2 = get_integer()
             operator = 'gcd'
-            latest_result = gcd(arg1, arg2) # Store result
+            latest_result = gcd_recursive(arg1, arg2) # Store result
             print('gcd({0:,},  {1:,}) = {2:,}'.format(arg1, arg2, latest_result))
             print(format(' RESULT ', '|^60'))
 
