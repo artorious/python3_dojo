@@ -5,6 +5,7 @@ import turtle
 import random
 from custom_modules.turtle_templates import polygon
 from custom_modules.get_positive_number_from_user import get_positive_num
+from custom_modules.turtle_templates import report_mouse_position
 
 # Disable rendering to speed up drawing
 turtle.hideturtle()
@@ -21,5 +22,9 @@ for a_polygon in range(how_many):   # call polygon()
         random.randrange(-250, 251),    # y-axis position ranges
         random.choice(('red', 'lime', 'cyan', 'yellow', 'purple'))  # Select color at random from tuple
     )
+
+report_mouse_position() # Track Mouse in terminal
+
 turtle.update() # Render image
-turtle.exitonclick() # mouse click to exit
+
+# turtle.exitonclick() # mouse click to exit
