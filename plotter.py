@@ -13,7 +13,7 @@ import turtle
 
 def initialize_plotter(width, height, min_x, max_x, min_y, max_y):
     """(int, int, int, int, int, int) -> turtle
-    
+
     Initializes the plotter with a window with dimensions <width> X <height>
     The x-axis ranging from <min_x> to <max_x> and the y-axis ranging from
     <min_y> to <max_y>. 
@@ -22,7 +22,34 @@ def initialize_plotter(width, height, min_x, max_x, min_y, max_y):
 
     Draws an x- and y-axis to simulate a Cartesian coordinate plane. 
     """
-    pass
+    global x_begin, x_end, x_increament # vars accesible to other functions
+
+    # turtle.tracer(1,0)    # Speed up rendering
+    turtle.delay(0)     # Speed up rendering
+    x_begin, x_end = min_x, max_x   # Est. global x and y ranges
+    turtle.setup(width=width, height=height)    # Set up window-size(px)
+    turtle.screensize(width, height)    # Set up screen-size(px)
+    turtle.setworldcoordinates(min_x, min_y, max_x, max_y)
+
+    # x-axis distance that corresponds to one pixel in window distance
+    x_increament = (max_x - min_x) / width  
+
+    turtle.hideturtle()     # Make pen invisible
+    # Draw x-axis
+    turtle.pencolor('black')
+    turtle.penup()
+    turtle.setposition(min_x, 0) # Move the pen to the left, center
+    turtle.setheading(0) # Aim pen right
+    turtle.pendown()
+    turtle.forward(max_x - min_x)   # Draw a line left to right
+
+    # Draw y-axis
+    turtle.penup()
+    turtle. setposition(0, min_y) # Move pen to center, bottom
+    turtle.setheading(90) # Aim pen upwards
+    turtle.pendown()
+    turtle.forward(max_y - min_y) # Draw line bottom to top
+    
 
 def plot(math_func, color):
     """(expr, str) -> turtle
