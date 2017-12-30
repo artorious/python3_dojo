@@ -89,7 +89,14 @@ def quad(x):
 
 def test_plotter():
     """ Provides a simple test of the plot function """
-    pass
+    from math import sin
+
+    initialize_plotter(600, 600, -10, 10, -10, 10)
+    # initialize_plotter(800, 800, -250, 250, -250, 250)
+
+    plot(quad, 'red')    # Plot f(x) = 1/2 * x + 3, for  -10 <= x < 100
+    plot(lambda x: x, 'blue')       # Plot f(x) = x, for -1- <= x < 100
+    plot(lambda x: 3*sin(x), 'green') # Plot f(x) = 3 sin x, for -10 <= x < 100
 
 if __name__ == '__main__':
     test_plotter()
