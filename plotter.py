@@ -24,6 +24,7 @@ def initialize_plotter(width, height, min_x, max_x, min_y, max_y):
     """
     global x_begin, x_end, x_increament # vars accesible to other functions
 
+    
     # turtle.tracer(1,0)    # Speed up rendering
     turtle.delay(0)     # Speed up rendering
     x_begin, x_end = min_x, max_x   # Est. global x and y ranges
@@ -49,30 +50,42 @@ def initialize_plotter(width, height, min_x, max_x, min_y, max_y):
     turtle.setheading(90) # Aim pen upwards
     turtle.pendown()
     turtle.forward(max_y - min_y) # Draw line bottom to top
-    
 
-def plot(math_func, color):
+
+def plot(f, color):
     """(expr, str) -> turtle
 
-    Plots function <math_func> on the Cartesian coordinate plane established
+    Plots function <f> on the Cartesian coordinate plane established
     by initialize_plotter. 
     Plots (x, f(x)), for all x in the range x_begin <= x < x_end
     <color> parameter dictates the curve's color
     """
-    pass
+    # Move pen to starting position
+    turtle.penup()  
+    turtle.setposition(x_begin, f(x_begin))
+    turtle.pencolor(color)
+    turtle.pendown()
+
+    # Iterate over the range of x values for x_begin <= x < x_end
+    x = x_begin
+    while x < x_end:
+        turtle.setposition(x, f(x))
+        x += x_increament # next x
+
 
 def finish_plotting():
     """
     Finishes rendering the Turtle graphics.
     """
-    pass
+    turtle.exitonclick()
 
 def quad(x):
     """
-    Represents the mathematical quadratic function f(x) = ((1/2)x^2) + 3. 
+    Represents the mathematical quadratic function f(x) = ((1/2)x^2) + 3.
+    (Quadratic function parabola) 
     A caller can pass this to plot()  for rendering.
     """
-    return
+    return 1/2 * x ** 2 + 3
 
 def test_plotter():
     """ Provides a simple test of the plot function """
