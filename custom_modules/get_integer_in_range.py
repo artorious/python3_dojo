@@ -14,14 +14,19 @@ def get_int_in_range(first, last):
         if first > last:    # If larger no. is provided 1st
             first, last = last, first   # Switch the parameters
         # Insist on value in the range <first>...<last>
-        in_value = int(input('Enter value in the range {0} .... {1} : '\
+        try:
+            in_value = int(input('Enter value in the range {0} .... {1} : '\
                     .format(first, last)))
         
-        while in_value < first or in_value > last:
-            print('{0} IS NOT in the range {1} .... {2}'.format(in_value, first, last))
-            in_value = int(input('Try again: '))
+            while in_value < first or in_value > last:
+                print('{0} IS NOT in the range {1} .... {2}'.format(in_value, first, last))
+                in_value = int(input('Try again: '))
+            
+            return in_value
+
+        except ValueError as err:
+            return err
         
-        return in_value
 
     else:
         return 'Expected an integers. int_in_range({0}, {1}) not surpported' \
