@@ -27,3 +27,6 @@ def range_custom(arg1, arg2=None, step=1):
 if __name__ == '__main__':
     for num in range_custom(1, 11, 2):
         print(num, end=' ')
+
+    for i in range(10):
+        pass

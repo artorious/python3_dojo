@@ -1,16 +1,12 @@
 #!/usr/bin/env python3
-"""Test for Primality.
-Tests for primality each integer from 2 up to a value provided by the user.  
-If an integer is prime, it prints it; otherwise, the number is not printed.
+"""Tests for Primality.
+
 Note: 
     A prime number is an integer greater than 1 whose only factors (divisors)
     are 1 and the number itself
 """
 
 from math import sqrt
-from get_positive_number_from_user import get_positive_num
-
-##################################################################################################
 
 def is_prime(the_integer):
     """(int) -> bool
@@ -30,19 +26,31 @@ def is_prime(the_integer):
         return 'Expected an integer. {0} not surpported'.format(type(the_integer))
     
 
-######################################################################################################
+def prime_sequence(start, stop):        
+    """(int, int) -> generator
+    Generates the sequence of prime numbers between <start> and <stop>
+    """
+    for value in range(start, stop):
+        if is_prime(value):
+            yield value
 
-def main():
-    """Check for Primality"""
-    print(__doc__) # Program Greeting
+
+    
+    
+
+if __name__ == '__main__':
+    from get_positive_number_from_user import get_positive_num
+
+    print("Check for Primality") # Program Greeting
 
     # Init
     max_value = int(get_positive_num())
 
+    cntr = 0
+
     for value in range(2, max_value + 1):   # Step thro all potential primes
         if is_prime(value):                 # Check if prime
+            cntr += value
             print(value, end=" ")           # Display primes found
     print()                                 # Move cursor to the  next line
-
-if __name__ == '__main__':
-    main()
+    print('Total =', cntr)
