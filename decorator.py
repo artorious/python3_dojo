@@ -6,6 +6,7 @@ paramters and return an integer
 
 from random import randrange
 
+# Decorator
 def show_call_and_return(f):
     """(function) -> function
     Accepts a single function <f> as a parameter
@@ -29,12 +30,14 @@ def show_call_and_return(f):
 
     return execute_augmented
 
+@show_call_and_return # Decorate
 def max(x, y):
     """(int, int) -> int
     Determine the maximum of <x> and <y>
     """
     return x if x > y else y
 
+@show_call_and_return # Decorate
 def summation(begin, end):
     """(int, int) -> int
     Add up the integers in the range <begin> ...<end> -1, inclusive
@@ -48,6 +51,7 @@ def summation(begin, end):
     
     return total
 
+@show_call_and_return # Decorate
 def gcd(m, n):
     """(int, int) -> int
     Uses Euclid's method to compute the greatest common factor
@@ -62,6 +66,7 @@ def gcd(m, n):
     
     return result
 
+@show_call_and_return # Decorate
 def star_rect(length, width):
     """(int, int) -> int
     Draw a <length> x <width> rectangle with asterisks
@@ -73,36 +78,32 @@ def star_rect(length, width):
 
 
 if __name__ == '__main__':
-    # Init: Decorate the functions to provide info about their calls
-    max_deco = show_call_and_return(max)
-    gcd_deco = show_call_and_return(gcd)
-    summation_deco = show_call_and_return(summation)
-    star_rect_deco = show_call_and_return(star_rect)
+    # Init: Decorate functions whose definition we do NOT control
     randrange_deco = show_call_and_return(randrange)
 
     # Display
-    max_deco(20, 30)
+    max(20, 30)
     print('------------------------')
-    max_deco(30, 20)
+    max(30, 20)
     print('------------------------')
-    max_deco(20, 20)
-    print('------------------------')
-
-    gcd_deco(20, 30)
-    print('------------------------')
-    gcd_deco(30, 20)
-    print('------------------------')
-    gcd_deco(20, 20)
+    max(20, 20)
     print('------------------------')
 
-    summation_deco(20, 30)
+    gcd(20, 30)
+    print('------------------------')
+    gcd(30, 20)
+    print('------------------------')
+    gcd(20, 20)
     print('------------------------')
 
-    star_rect_deco(7, 3)
+    summation(20, 30)
     print('------------------------')
-    star_rect_deco(4, 4)
+
+    star_rect(7, 3)
     print('------------------------')
-    star_rect_deco(12, 5)
+    star_rect(4, 4)
+    print('------------------------')
+    star_rect(12, 5)
     print('------------------------')
 
     print("{0} is a pseudorandom integer in the range 10 to 20, inclusive".format(randrange_deco(10, 21)))
