@@ -11,54 +11,63 @@ def max(x, y):
     """(int, int) -> int
     Determine the maximum of <x> and <y>
     """
-    return x if x > y else y
+    call_string = "max({}, {})".format(x, y)
+    print('>>> Calling {}'.format(call_string))
+    result = x if x > y else y
+    print('<<< Returning {} from {}'.format(result, call_string))
 
 def summation(begin, end):
     """(int, int) -> int
     Add up the integers in the range <begin> ...<end> -1, inclusive
     """
+    call_string = 'summation({0}, {1})'.format(begin, end)
+    print('>>> Calling {0}'.format(call_string))
+
     total = 0
 
     while begin != end:
         total += begin
         begin += 1
+    print('<<< Returning {0} from {1}'.format(total, call_string))
     return total
 
-def gcd(num1, num2):
+def gcd(m, n):
     """(int, int) -> int
     Uses Euclid's method to compute the greatest common factor
-    (greatest common divisor) of two integers, <num1> and <num2>
+    (greatest common divisor) of two integers, <m> and <n>
     Returns greatest common factor (gcd) of the two integers
     """
-    if isinstance(num1, int) and isinstance(num2, int):
-        if num1 == 0:
-            return num2
-        elif num2 == 0:
-            return num1
-        else:   
-            if num1 > num2: # Handle RuntimeError: maximum recursion depth exceeded in comparison
-                return gcd(num2, num1 % num2)
-            else:
-                return gcd(num1, num2 % num1)
+    call_string = 'gcd({0} {1})'.format(m, n)
+    print('>>> Calling {0}'.format(call_string))
+    if n == 0:
+        result = m
     else:
-        return 'Expected Two Integers'
+        result = gcd(n, m % n)
+    print('<<< Returning {0} from {1}'.format(result, call_string))    
+    return result
 
 def star_rect(length, width):
     """(int, int) -> int
     Draw a <length> x <width> rectangle with asterisks
     """
+    call_string = 'star_rect({0}, {1})'.format(length, width)
+    print('>>> Calling {0}'.format(call_string))
     for row in range(width):
         print('*' * length)
-
-print("The maximum of 20 and 30 is", max(20, 30))
-print("The maximum of 30 and 20 is", max(30, 20))
-print("The maximum of 20 and 20 is", max(20, 20))
+    print('<<< Return {0} from {1}'.format(None, call_string))
+max(20, 30)
 print('------------------------')
-print("The GCD of 20 and 30 is", gcd(20, 30))
-print("The GCD of 30 and 20 is", gcd(30, 20))
-print("The GCD of 20 and 20 is", gcd(20, 20))
+max(30, 20)
 print('------------------------')
-print("The summation from 20 to 30 is", summation(20, 30))
+max(20, 20)
+print('------------------------')
+gcd(20, 30)
+print('------------------------')
+gcd(30, 20)
+print('------------------------')
+gcd(20, 20)
+print('------------------------')
+summation(20, 30)
 print('------------------------')
 star_rect(7, 3)
 print('------------------------')
