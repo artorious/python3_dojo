@@ -3,6 +3,7 @@
 Build custom lists as specified by the user
 """
 
+
 def build_list_of_positive_integers():
     """(None) -> list
     Builds a list of non-negative integers from input provided by user
@@ -28,6 +29,9 @@ def build_list_of_positive_integers():
     return result
 
 if __name__ == '__main__':
-    col = build_list_of_positive_integers()
-    print(col)
+    from custom_modules.primality_check import is_prime, prime_sequence
+    
+    # Make a list from a generator
+    primes = list(prime_sequence(20, 50))
+    print(primes)
     
