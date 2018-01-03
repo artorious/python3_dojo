@@ -28,10 +28,60 @@ def build_list_of_positive_integers():
         
     return result
 
-if __name__ == '__main__':
-    from custom_modules.primality_check import is_prime, prime_sequence
+def avg_numbers_in_list():
+    """
+    Averages numbers in a dynamically built list 
+    """
+    # Init
+    total = 0.0
+    numbers_list = []
+    valid_list_length = False
+    # Get length of list from user 
+    while not valid_list_length:    
+        try:
+            print('How many entries to the list? ')
+            number_of_entries = int(input('Enter positive integer (-1 quits): '))
+            if number_of_entries > 0:
+                valid_list_length = True
+            elif number_of_entries == -1:
+                print('Quiting.........')
+                
+                break
+            else:
+                continue
+        except Exception as err:
+            print('Expected positive integer : {0}'.format(err))
     
-    # Make a list from a generator
-    primes = list(prime_sequence(20, 50))
-    print(primes)
+    if number_of_entries == -1: 
+        return 'Exiting'
+    else:
+        print('Please enter {0} Numbers'.format(number_of_entries))
+        for item_no in range(0, number_of_entries):
+            valid_list_item = False
+            while not valid_list_item:
+                try:
+                    list_item = float(input('Enter list item #{0} : '.format(item_no)))
+                    numbers_list += [list_item]
+                    total += list_item
+                    valid_list_item = True
+
+                except Exception as err:
+                    print('Expected Number : {0}'.format(err))
+                    print('Try again')
+                    continue
+        
+        # Print numbers entered
+        print(end='Numbers entered: ')
+        for list_item in numbers_list:
+            print(list_item, end=', ')
+        print()
+
+        # Calculate Avg
+        print('Average : {0}'.format(total / number_of_entries))
+
+
+if __name__ == '__main__':
+    avg_numbers_in_list()
+    
+
     
