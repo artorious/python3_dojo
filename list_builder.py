@@ -79,15 +79,32 @@ def avg_numbers_in_list():
         # Calculate Avg
         print('Average : {0}'.format(total / number_of_entries))
 
+def prefix_and_sufix_a_list(the_list=[1, 2, 3, 4, 5, 6, 7, 8, 9]):
+    """(list) -> str
+    Prints all the prefixes and suffixes of <the_list>
+    """
+    print('Prefixes of {0}'.format(repr(the_list)))
+    for lst_item in range(0, len(the_list) + 1):
+        print('<{0}>'.format(the_list[0 : lst_item]))
+    for lst_item in range(0, len(the_list) + 1):
+        print('<{0}>'.format(the_list[lst_item : len(the_list) + 1]))
+    print('Suffixes of {0}'.format(repr(the_list)))
 
 if __name__ == '__main__':
-    play_list = build_list_of_positive_integers()
+    # List slicing 
+    lst = [10, 20, 30,40, 50, 60, 70, 80, 90, 100, 110, 120]
+    # print(lst)
+    # print(lst[0:3])
+    # print(lst[4:8])
+    # print(lst[2:5])
+    # print(lst[-5:-3])
+    # print(lst[:3])
+    # print(lst[4:])
+    # print(lst[:])
+    # print(lst[-100:3])
+    # print(lst[4:100])
+    # print(lst[2:-2:2])
+    # print(lst[::2])
+    # print(lst[::-1])
 
-    # print the list in reverse
-    print('List as Entered: {0}'.format(repr(play_list)))   
-    play_list.reverse() # In-place-reverse
-    print('List After Reversal: {0}'.format(repr(play_list))) 
-    print('Display as Entered:', end=' ') 
-    for item in range(len(play_list) - 1, -1, -1):
-        print(play_list[item], end=' ')
-    print()
+    prefix_and_sufix_a_list(lst)
