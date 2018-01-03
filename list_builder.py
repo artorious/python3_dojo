@@ -81,7 +81,13 @@ def avg_numbers_in_list():
 
 
 if __name__ == '__main__':
-    avg_numbers_in_list()
-    
+    play_list = build_list_of_positive_integers()
 
-    
+    # print the list in reverse
+    print('List as Entered: {0}'.format(repr(play_list)))   
+    play_list.reverse() # In-place-reverse
+    print('List After Reversal: {0}'.format(repr(play_list))) 
+    print('Display as Entered:', end=' ') 
+    for item in range(len(play_list) - 1, -1, -1):
+        print(play_list[item], end=' ')
+    print()
