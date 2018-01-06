@@ -16,24 +16,44 @@
 #-----------------------------------------------------------------------------
 
 # TODO: Execute race horse simulation
-# TODO: Include specif shapes and images for the simulation
+# TODO: Animate horses - Randomly advanced until a horse crosses the finish line
 import turtle
 
-def new_horse():
-    """(None) -> turtle
+def get_horse_images(num_horses):
+    """ (int) -> list
+    Returns a list of GIF image files. 
+    Each image contains the same horse image, each with a unique number 1 - 10
+    """
+    images = []
+    # Get all horse images
+    for a_horse in range(0, num_horses):
+        images = images + ['images/horse_{0}_image.gif'.format(a_horse + 1)]
+    return images
+
+def register_horse_images(images):
+    """ (list) -> turtle
+    Registers each object(turtle graphic) in <images> list
+    """
+    for a_horse in range(0, len(images)):
+        turtle.register_shape(images[a_horse])
+
+def new_horse(image_file):
+    """(file) -> turtle
     Create a new horse
     Returns a turtle object
     """
     horse = turtle.Turtle()
+    horse.hideturtle()
+    horse.shape(image_file)
     return horse
 
-def generate_horses(num_horses):
-    """(int) -> list
+def generate_horses(images, num_horses):
+    """(list, int) -> list
     Returns a list of turtle objects assigned to variable horses
     """
     horses = []
     for a_horse in range(0, num_horses):
-        horse = new_horse()
+        horse = new_horse(images[a_horse])
         horses.append(horse)
     return horses
 
@@ -53,15 +73,17 @@ def place_horses(horses, loc, separation):
 
 def main():
     """ Horse Race Simulation """
-    num_horses = 10 # Init number of horses
-    turtle.setup(750, 800)  # Set window size
-    window = turtle.Screen() # Init turtle window
+    num_horses = 10                             # Init number of horses
+    turtle.setup(750, 800)                      # Set window size
+    window = turtle.Screen()                    # Init turtle window
     window.title('Horse Race Simulation Program') # Set window title bar
-    start_loc = (240, -200) # Init Location of the first horse
-    track_separation = 60   # Init amount of separation between each horse
-    horses = generate_horses(num_horses) # Generate & Init horses
+    start_loc = (240, -200)                     # Init Location of the first horse
+    track_separation = 60                       # Init amount of separation between each horse
+    horse_images = get_horse_images(num_horses) # Init horse images
+    register_horse_images(horse_images)         # Register images
+    horses = generate_horses(horse_images, num_horses)        # Generate & Init horses
     place_horses(horses, start_loc, track_separation)   # Place horses at starting line
-    turtle.exitonclick() # Terminate program when close window
+    turtle.exitonclick()                        # Terminate program when close window
 
 
 if __name__ == '__main__':
