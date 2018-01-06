@@ -16,9 +16,10 @@ arg2 = 0.0
 operator = 'None'
 
 def help_screen():
-    """Displays Help Infomation. How the program works
-    Accepts no parameters
-    Returns nothing
+    """ Displays Help Infomation. 
+    
+        How the program works. Accepts no parameters
+        Returns nothing
     """
     print('-' * 60)
     print(format('| {0} |', '-^44').format(__doc__))
@@ -38,9 +39,10 @@ def help_screen():
     print('-' * 60)
 
 def menu():
-    """Displays Arithmetic  Menu Options.
-    Accepts no parameter
-    Returns an integer from user
+    """ Displays Arithmetic  Menu Options.
+    
+        Accepts no parameter
+        Returns an integer from user
     """
     help_screen()
     print(format(' Enter Command to Porceed ', '|^60'))
@@ -52,7 +54,7 @@ def menu():
     return get_int_in_range(-1, 10)
 
 def arithmetic_ops():
-    """Runs a command loop that allows users to perform simple arithmetic"""
+    """ Runs a command loop that allows users to perform simple arithmetic """
     # Init
     latest_result = 0.0
     terminate = False
@@ -188,9 +190,10 @@ def arithmetic_ops():
             
 
 def add_two(arg1, arg2):
-    """(float, float) -> float
-    Adds two numbers up
-    Returns arg1 + arg2 
+    """ (float, float) -> float
+    
+        Adds two numbers up
+        Returns arg1 + arg2 
     """
     try:
         return arg1 + arg2
@@ -198,9 +201,10 @@ def add_two(arg1, arg2):
         return 'Unsupported operation: {0} + {1} '.format(type(arg1), type(arg2))
 
 def multiply_two(arg1, arg2):
-    """(float, float) -> float
-    multiplies two numbers (arg1 * arg2)
-    Returns the product  
+    """ (float, float) -> float
+    
+        multiplies two numbers (arg1 * arg2)
+        Returns the product  
     """
     try:
         return arg1 * arg2
@@ -208,9 +212,10 @@ def multiply_two(arg1, arg2):
         return 'Unsupported operation: {0} * {1} '.format(type(arg1), type(arg2))
 
 def subtract_two(arg1, arg2):
-    """(float, float) -> float
-    multiplies two numbers (arg1 - arg2)
-    Returns the difference 
+    """ (float, float) -> float
+    
+        multiplies two numbers (arg1 - arg2)
+        Returns the difference 
     """
     try:
         return arg1 - arg2
@@ -218,9 +223,10 @@ def subtract_two(arg1, arg2):
         return 'Unsupported operation: {0} - {1} '.format(type(arg1), type(arg2))
 
 def divide(arg1, arg2):
-    """(float, float) -> float
-    Divides two numbers (arg1 / arg2)
-    Returns arg1 / arg2
+    """ (float, float) -> float
+        
+        Divides two numbers (arg1 / arg2)
+        Returns arg1 / arg2
     """
     try:
         return arg1 / arg2
@@ -232,9 +238,10 @@ def divide(arg1, arg2):
         return 'Oops... {0}'.format(other_error)
 
 def floor_div(arg1, arg2):
-    """(float, float) -> float
-    Prerforms floor division on two numbers
-    Returns  arg1 // arg2
+    """ (float, float) -> float
+    
+        Performs floor division on two numbers
+        Returns  arg1 // arg2
     """
     try:
         return arg1 + arg2
@@ -242,9 +249,10 @@ def floor_div(arg1, arg2):
         return 'Unsupported operation: {0} // {1} '.format(type(arg1), type(arg2))
 
 def exp_two(arg1, arg2):
-    """(float, float) -> float
-    Exponentiates two numbers (arg1 ** arg2)
-    Returns the exponent
+    """ (float, float) -> float
+    
+        Exponentiates two numbers (arg1 ** arg2)
+        Returns the exponent
     """
     try:
         return arg1 ** arg2
@@ -252,9 +260,10 @@ def exp_two(arg1, arg2):
         return 'Unsupported operation: {0} ** {1} '.format(type(arg1), type(arg2))
 
 def modulo_div(arg1, arg2):
-    """(float, float) -> float
-    Modulo division of  two numbers
-    Returns  (arg1 % arg2)
+    """ (float, float) -> float
+    
+        Modulo division of  two numbers
+        Returns  (arg1 % arg2)
     """
     try:
         return arg1 % arg2

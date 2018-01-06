@@ -3,12 +3,13 @@
 """
 
 def get_int_in_range(first, last):
-    """(int, int) -> int
-    Prompt user for an integer within the specified range
-    <first> is either a min or max acceptable value.
-    <last> is the corresponding other end of the range, either a min or max 
-    acceptable value.
-    Returns an acceptable value from the user
+    """ (int, int) -> int
+    
+        Prompt user for an integer within the specified range
+        <first> is either a min or max acceptable value.
+        <last> is the corresponding other end of the range, either a min or max 
+        acceptable value.
+        Returns an acceptable value from the user
     """
     if isinstance(first, int) and isinstance(last, int):
         if first > last:    # If larger no. is provided 1st

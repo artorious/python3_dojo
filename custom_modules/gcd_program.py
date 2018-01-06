@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
-"""GCD-Compute greatest common factor of two integers provided by the user"""
+""" Compute greatest common factor of two integers provided by the user """
 
 from get_integer_from_user import get_integer
 
 def gcd_recursive(num1, num2):
-    """(int, int) -> int
-    Uses Euclid's method to compute the greatest common factor
-    (greatest common divisor) of two integers, <num1> and <num2>
-    Returns greatest common factor (gcd) of the two integers
+    """ (int, int) -> int
+
+        Uses Euclid's method to compute the greatest common factor
+        (greatest common divisor) of two integers, <num1> and <num2>
+        Returns greatest common factor (gcd) of the two integers
     """
     if isinstance(num1, int) and isinstance(num2, int):
         if num1 == 0:
@@ -23,10 +24,11 @@ def gcd_recursive(num1, num2):
         return 'Expected Two Integers'
 
 def gcd_iterative(num1, num2):
-    """(int, int) -> int
-    Uses a naive iterative algorithm to compute gcd of two integers, 
-    <num1> and <num2>. 
-    Returns greatest common factor (gcd) of the two integers
+    """ (int, int) -> int
+    
+        Uses a naive iterative algorithm to compute gcd of two integers, 
+        <num1> and <num2>. 
+        Returns greatest common factor (gcd) of the two integers
     """
     # TODO: Handle bug: gcd_iterative(900 and 0) = 0
     if isinstance(num1, int) and isinstance(num2, int):

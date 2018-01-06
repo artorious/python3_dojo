@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
-'''Prompt user for a positve number ( integer or floating-point number).
-Returns  value (float)
-'''
+""" Prompt user for a positve number ( integer or floating-point number).
+
+    Returns  value (float)
+"""
 
 def get_positive_num():
-    '''
-    Prompt user for a positive number (integer or floating-point number)
-    Returns the float
-    '''
+    """ Prompt user for a positive number (integer or floating-point number)
+    
+        Returns the float
+    """
     # init
     valid_value = False
 

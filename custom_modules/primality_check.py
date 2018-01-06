@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
 """Tests for Primality.
 
-Note: 
-    A prime number is an integer greater than 1 whose only factors (divisors)
-    are 1 and the number itself
+    Note: 
+        A prime number is an integer greater than 1 whose only factors 
+        (divisors) are 1 and the number itself
 """
 
 from math import sqrt
 
 def is_prime(the_integer):
-    """(int) -> bool
-    Determines the primality of a given value <the_integer>, an integer.
-    Returns True if <the_integer>, otherwise, returns False
+    """ (int) -> bool
+    
+        Determines the primality of a positive value <the_integer>, an integer
+        Returns True if <the_integer> is a prime number. Otherwise, 
+        returns False
     """
-    if isinstance(the_integer, int):
+    if isinstance(the_integer, int) and the_integer > 1:
         # Try potential factors from 2 (smallest prime) to the square root of <the_integer> (inclusive)
         # Use of squareroot to increase program efficiency (Instead of Trying values from 2  to <the_integer> (inclusive))
         root = round(sqrt(the_integer)) + 1 
@@ -23,15 +25,17 @@ def is_prime(the_integer):
                 return False                        # Found a Factor
         return True                                 # No factors found
     else:
-        return 'Expected an integer. {0} not surpported'.format(type(the_integer))
+        return 'Expected a positive integer. {0} not surpported'.format(the_integer)
     
 
 def prime_sequence(start, stop):        
-    """(int, int) -> generator
-    Generates the sequence of prime numbers between <start> and <stop>
+    """ (int, int) -> generator
+
+        Generates the sequence of prime numbers between <start> and <stop>
+        Returns the generator object
     """
     for value in range(start, stop):
-        if is_prime(value):
+        if is_prime(value) == True:
             yield value
 
 

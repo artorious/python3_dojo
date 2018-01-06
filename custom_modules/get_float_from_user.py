@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Prompt user for an floating-point number"""
+""" Prompt user for an floating-point number """
 
 def get_float():
-    """Prompt user for a number
-    Returns the float
+    """ Prompt user for a number
+
+        Returns the float
     """
     # init
     valid_value = False

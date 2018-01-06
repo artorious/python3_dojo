@@ -5,9 +5,10 @@ import turtle
 
 def polygon(sides, length, x_pos, y_pos, color, fill=False):
     """ (int, int, int, int, str, bool) -> turtle
-    Draw a regular polygon with the given number of <sides>
-    of <length>. Pen begins at point(<x_pos>, <y_pos>) and is <color>
-    <fill>, default False, fills the polygon with the specifed <color>
+
+        Draw a regular polygon with the given number of <sides>
+        of <length>. Pen begins at point(<x_pos>, <y_pos>) and is <color>
+        <fill>, default False, fills the polygon with the specifed <color>
     """
 
     try:
@@ -33,9 +34,10 @@ def polygon(sides, length, x_pos, y_pos, color, fill=False):
     
 def draw_horizontal_lines(how_many, length, y_pos, color):
     """ (int, int, int, str) -> turtle
-    Draws <how_many> <color> horizontal lines of <length> stacked on top
-    of each other with the lowest line appearing at position <y_pos> on the 
-    y-axis . 
+
+        Draws <how_many> <color> horizontal lines of <length> stacked on top
+        of each other with the lowest line appearing at position <y_pos> on the 
+        y-axis . 
     """
     try:
         turtle.color(color)
@@ -53,7 +55,8 @@ def draw_horizontal_lines(how_many, length, y_pos, color):
 
 def report_mouse_position(x_pos=0, y_pos=0):
     """ (int, int) -> str
-    Prints the values of <x_pos> and <y_pos> (mouse clicks and key presses)
+
+        Prints values of <x_pos> and <y_pos> (mouse clicks and key presses)
     """
     print('x-axis:', x_pos, ' Y-axis: ', y_pos, flush=True)
     # A function that accept a function as a parameter

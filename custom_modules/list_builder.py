@@ -1,22 +1,25 @@
 #!/usr/bin/env python3
 """ A play on python lists
-Build custom lists
+
+    Build custom lists
 """
 # TODO: play with nester?
 class ListBuilder(list):
-    """ 
-    Class methods build and play with lists
-    Inherits from the built-in list class
+    """ Class methods build and play with lists
+
+        Inherits from the built-in list class
     """
     def __init__(self, the_list= []):
         """ (ListBuilder, list) -> list
-        Initialize attributes
+
+            Initialize attributes
         """
         self.extend(the_list)
 
     def csv_file_to_list(self, file_path):
-        """(ListBuilder, file) -> list
-        Reads <file_path> and returns list (Empty if file doesn't exist)
+        """ (ListBuilder, file) -> list
+
+            Reads <file_path> and returns list (Empty if file doesn't exist)
         """
         try:
             with open(file_path) as file_obj:    # Open the file
@@ -29,9 +32,10 @@ class ListBuilder(list):
             return self
     
     def list_of_floats(self):
-        """(ListBuilder) -> list
-        Builds a list of integers/floats from input provided by user
-        Returns the list
+        """ (ListBuilder) -> list
+
+            Builds a list of integers/floats from input provided by user
+            Returns the list
         """
         done = False
         while not done:
@@ -51,9 +55,10 @@ class ListBuilder(list):
         return self
 
     def avg_list_of_num(self, the_list=None):
-        """(ListBuilder, list) -> float
-        Averages numbers in <the_list> provided, if none, build list 
-        Returns the average of list members
+        """ (ListBuilder, list) -> float
+
+            Averages numbers in <the_list> provided, if none, build list 
+            Returns the average of list members
         """
         total = 0.0 # Init
         if the_list == None: # Build your own
@@ -66,9 +71,10 @@ class ListBuilder(list):
         return total / len(self)
 
     def prefix_and_sufix_a_list(self, the_list=[1, 2, 3, 4, 5, 6, 7, 8, 9]):
-        """(ListBuilder, list) -> str
-        Prints all the prefixes and suffixes of <the_list>
-        Returns (Default):
+        """ (ListBuilder, list) -> str
+
+            Prints all the prefixes and suffixes of <the_list>
+            Returns (Default):
             
             Prefixes of [1, 2, 3, 4, 5, 6, 7, 8, 9]
             <[]>

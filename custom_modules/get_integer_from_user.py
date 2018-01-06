@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Prompt user for an integer 
-"""
+""" Prompt user for an integer """
 
 def get_integer():
-    """Prompt user for an integer
-    Returns the integer
+    """ Prompt user for an integer
+
+        Returns the integer
     """
     # init
     valid_value = False

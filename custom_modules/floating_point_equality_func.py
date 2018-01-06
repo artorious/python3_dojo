@@ -5,6 +5,7 @@ from math import fabs
 def float_equality(float1, float2, tolerance):
     """
     Returns True if <float1> = <float2> or |<float1> - <float2>| < <tolerance>
+    
     If <float1> and <float2> differ by only a small amount(specified by 
     <tolerance>), <float1> and <float2> are considered "equal". 
     NOTE:
