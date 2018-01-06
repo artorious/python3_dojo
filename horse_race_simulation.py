@@ -16,8 +16,33 @@
 #-----------------------------------------------------------------------------
 
 # TODO: Execute race horse simulation
-# TODO: Animate horses - Randomly advanced until a horse crosses the finish line
+# TODO: Add Race Banners
+
 import turtle
+import random
+
+def start_horses(horses, finish_line, forward_incr):
+    """ (list, int, int) -> turtle
+    Takes <horses> being a list of horse turtle objects, the location of the
+    <finish_line> as an x coordinate value on the turtle screen, and the 
+    fundamental increament amount <forward_incr> (each horse is advanced by 
+    one to three times this amount)
+    """
+    # Init    
+    have_winner = False 
+    horse_pos = 0 # index into list of horse turtle objects
+    while not have_winner:  # Move horses increamentally until winner is found
+        horse = horses[horse_pos]
+        horse.forward(random.randint(1,3) * forward_incr)
+        if horse.position()[0] < finish_line:   # Check for horse over finish line
+            have_winner = True
+        else:
+            horse_pos = (horse_pos + 1) % len(horses)
+    return horse_pos
+
+def display_winner(winning_horse):
+    """ """
+    print('Horse {0} Wins!'.format(winning_horse))
 
 def get_horse_images(num_horses):
     """ (int) -> list
@@ -76,13 +101,17 @@ def main():
     num_horses = 10                             # Init number of horses
     turtle.setup(750, 800)                      # Set window size
     window = turtle.Screen()                    # Init turtle window
-    window.title('Horse Race Simulation Program') # Set window title bar
+    window.title('Horse Race Simulation Program') # Set window title bar 
     start_loc = (240, -200)                     # Init Location of the first horse
+    finish_line = -240                          # Init Finish line
     track_separation = 60                       # Init amount of separation between each horse
+    forward_incr = 6                            # Init Increament amount
     horse_images = get_horse_images(num_horses) # Init horse images
     register_horse_images(horse_images)         # Register images
-    horses = generate_horses(horse_images, num_horses)        # Generate & Init horses
+    horses = generate_horses(horse_images, num_horses)  # Generate & Init horses
     place_horses(horses, start_loc, track_separation)   # Place horses at starting line
+    winner = start_horses(horses, finish_line, forward_incr) # Start horses
+    display_winner(winner + 1)                  # Display winning horse
     turtle.exitonclick()                        # Terminate program when close window
 
 
