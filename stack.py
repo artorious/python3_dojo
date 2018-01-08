@@ -10,26 +10,48 @@ A stack can be viewed as a list that can be accessed only at one end.
 """
 
 def get_stack():
-    """ Creates and returns an empty stack """
-    return
+    """ () -> list 
+    
+    Creates and returns an empty stack 
+    """
+    return []
 
 def is_empty(the_stack):
-    """ Returns True if stack empty, otherwise returns False. """
-    return
+    """ (list) -> bool
+    
+    Returns True if <the_stack> empty, otherwise returns False. 
+    """
+    if the_stack == []:
+        return True
+    else:
+        return False
 
 def top(the_stack):
-    """ Returns value of the top item o stack, if stack not empty. 
-    Otherwise returns None """
+    """ 
+    Returns value of the top item in <the_stack>, if stack not empty. 
+    Otherwise returns None 
+    """
 
-    return None
+    if is_empty(the_stack):
+        return None
+    else:
+        return the_stack[len(the_stack) - 1]
 
 def push(the_stack, item):
     """ Pushes item on the top of stack """
-    pass
+    the_stack.append(item)
 
 def pop(the_stack):
     """ Returns top of stack if stack not empty. Otherwise, returns None """
-    return
+    if is_empty(the_stack):
+        return None
+    else:
+        item = the_stack[len(the_stack) - 1]
+        del the_stack[len(the_stack) - 1]
+        return item
+
+
+
 
 def main():
     """ Display and push values 1 through 4 on the stack 
@@ -37,7 +59,16 @@ def main():
     Displays the numbers popped off the stack, retrieved in the reverse order
     that they were pushed
     """
-    pass
+    my_stack = get_stack()
+    
+    for item in range(1, 5):
+        push(my_stack, item)
+        print('Pushing {0} on stack'.format(item))
+
+    while not is_empty(my_stack):
+        item = pop(my_stack)
+        print('Popping {0} from stack'.format(item))
+         
 
 if __name__ == '__main__':
     main()
