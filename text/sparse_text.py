@@ -14,8 +14,22 @@ def create_modified_file(input_file, output_file):
     Returns a tuple containing how many occurences of letter 'e' were removed,
     and the total character count of the file (num_total, num_removals)
     """
-    return
+    # Init
+    empty_str = ''
+    num_total_chars = 0
+    num_removals = 0
 
+    for line in input_file:
+        # Save original line length
+        orig_line_length = len(line) - 1
+        num_total_chars += orig_line_length # Track No. chars in file
+        # Remove all occurrences of letter'e'
+        modified_line = line.replace('e', empty_str).replace('E', empty_str)
+        num_removals += orig_line_length - (len(modified_line) - 1) # Track No. chars removed
+        # Simultaneously output line to screen and outpyr file
+        print(modified_line.strip('\n'))
+        output_file.write(modified_line)
+    return (num_total_chars, num_removals)
 
 def sparse_text():
     print('''
