@@ -10,7 +10,28 @@ def get_phone_num():
 
     Returns entered phone number in the form 123-456-7890.
     """
-    return
+    # Init
+    valid_ph_num = False
+    empty_str = ''
+    # Prompt for phone number
+    while not valid_ph_num:
+        phone_num = input('Enter phone numbr (xxx-xxx-xxxx): ')
+        # check if valid form
+        if len(phone_num) != 12 or phone_num[3] != '-' or phone_num[7] != '-':
+            print('Invalid Entry - Must be of the form xxx-xxx-xxxx\n')
+        else:
+            # Check for non-digis
+            digit_index = 0
+            valid_ph_num = True
+            phone_num_digits = phone_num.replace('-', empty_str)
+        
+            while valid_ph_num and digit_index < len(phone_num_digits):
+                if not phone_num_digits[digit_index].isdigit():
+                    print('* Non-digit: {0} *\n'.format(phone_num_digits[digit_index]))
+                    valid_ph_num = False
+                else:
+                    digit_index += 1
+    return phone_num
 
 def display_all_spellings(phone_num):
     """ (str) -> 
