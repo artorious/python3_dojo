@@ -40,7 +40,16 @@ def display_all_spellings(phone_num):
     replaced with a corresponding letter from the phone keys
     """
 
-    pass
+    translate = {'0':'0', '1':'1', '2': ('a','b','c'), '3': ('d','e','f'),
+                '4': ('g','h','i'), '5': ('j','k','l'), '6': ('m','n','o'),
+                '7': ('p','q','r','s'), '8': ('t','u','v'), '9': ('w','x','y','z')}
+    # Dispaly spellings
+    for let1 in translate[phone_num[8]]:
+        for let2 in translate[phone_num[9]]:
+            for let3 in translate[phone_num[10]]:
+                for let4 in translate[phone_num[11]]:
+                    print('{0}{1}{2}{3}{4}'.format(phone_num[0:8], let1, let2, let3, let4))
+    
 
 
 if __name__ == '__main__':
