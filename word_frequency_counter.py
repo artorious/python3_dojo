@@ -15,11 +15,11 @@ def get_file():
     input_file_opened = False
     while not input_file_opened:
         try:
-            file_name = input('Enter input file name(path):\n>>>')
+            file_name = input('Enter input file path(name with extension):\n>>> ')
             input_file = open(file_name, 'r')
             input_file_opened = True
         except IOError as ioerr:
-            print('Input file not found - Please re-enter:\n>>>')
+            print('Input file not found - Please re-enter path:\n>>> ')
     return (file_name, input_file) 
 
 def count_words(input_file, search_word):
@@ -27,7 +27,37 @@ def count_words(input_file, search_word):
     Returns the number of occurrences of <search_word> in the 
     provide <input_file> object.
     """
-    return
+    # Init
+    space = ' '
+    num_occurrences = 0
+    word_delimiters = (space, ',',';',':','.',',','\n','"',"'",'(',')')
+    search_word_len = len(search_word)
+
+    for line in input_file:
+        end_of_line = False
+        line = line.lower() # Convert line read to lowercase
+        while not end_of_line:
+            try:
+                index = line.index(search_word) # Search for word in current line
+                # If word at start of line is followed by a delimiter
+                if index == 0 and line[search_word_len] in word_delimiters:
+                    found_search_word = True
+                # If search word within line, check chars before/after
+                elif line[index - 1] in word_delimiters and line[index + search_word] in word_delimiters:
+                    found_search_word = True
+                # If found within other letters, then NOT search word
+                else:
+                    found_search_word = False
+                # If search word found, increament count
+                if found_search_word:
+                    num_occurrences += 1
+                # Reset line to rest of line following search word
+                line = line[index + search_word_len: len(line)]
+
+            except ValueError:
+                end_of_line = True
+
+    return num_occurrences
 
 def main():
     """ Word Frequency Count Program """
