@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-""" Compare the usage of lists vs. tuples """
+""" A play on Python Tuples
+Compare the usage of lists vs. tuples 
+"""
 # Program Greeting
 print(__doc__)
 print()
@@ -20,27 +22,25 @@ print()
 
 # Iteration
 print('Iterate over each list element and display it multiplied by two:', end=' ')
-for elem in my_list:
-    print(elem * 2, end=' ')
-print()
-
-# Iteration
+print([elem * 2 for elem in my_tuple])
 print('Iterate over each tuple element and display it multiplied by two:', end=' ')
-for elem in my_tuple:
-    print(elem * 2, end=' ')
+print([elem * 2 for elem in my_tuple])
 print()
 
 # Slicing
 print('List slice (to reverse): {0}'.format(my_list[::-1]))
 print('Tuple slice (to reverse): {0}'.format(my_tuple[::-1]))
 print()
+
 # Modification
 try:
+    moded_list, moded_tuple = False, False # Init
     print('Modify list and tuple')
-    my_list[0] = 9
-    my_tuple[0] = 9
-except TypeError as terr:
-    print(terr)
+    my_list[0], moded_list = 9, True
+    my_tuple[0], moded_tuple = 9, True
 
-print('Modifed list : {0}'.format(my_list))
-print('Modifed Tuple?: {0}'.format(my_tuple))
+except TypeError as terr:
+    print('Oops... Error: {0}'.format(terr))
+
+print('Modifed list : {0} : {1}'.format(moded_list, my_list))
+print('Modifed Tuple: {0} : {1}'.format(moded_tuple, my_tuple))
