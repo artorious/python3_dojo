@@ -32,8 +32,6 @@ def main():
     lst1, lst2  = list(range(1, 6)), list(range(10, 15))
     print('Working lists:\v{0} and {1}'.format(lst1, lst2))
     print('List of sums:\v{0}'.format([x+y for (x, y) in zip(lst1, lst2)]))
-    # for (x, y) in zip(lst1, lst2):
-    #     print(x + y, end=' ')
 
 if __name__ == '__main__':
     main()
