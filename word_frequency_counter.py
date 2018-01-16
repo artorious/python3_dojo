@@ -43,7 +43,7 @@ def count_words(input_file, search_word):
                 if index == 0 and line[search_word_len] in word_delimiters:
                     found_search_word = True
                 # If search word within line, check chars before/after
-                elif line[index - 1] in word_delimiters and line[index + search_word] in word_delimiters:
+                elif line[index - 1] in word_delimiters and line[index + len(search_word)] in word_delimiters:
                     found_search_word = True
                 # If found within other letters, then NOT search word
                 else:
@@ -74,17 +74,10 @@ def main():
         print("NO occurrences of the word '{0}' in file: {1}".format(
             search_word, file_name))
     else:
-        print("The word '{0}' occurs {1} times in the file: {1}".format(
-            search_word, file_name))
+        print("The word '{0}' occurs {1} times in the file: {2}".format(
+            search_word, num_occurrences,file_name))
         
 
 
 if __name__ == '__main__':
     main()
-
-
-
-#### ---Main
-
-
-# Prompt user for word to search for, assign to var search_word
