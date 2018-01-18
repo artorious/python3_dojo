@@ -10,9 +10,9 @@ of the circle.
 
 from turtle import Turtle, Screen, mainloop, delay, clear
 from custom_modules.circle import Circle
-
-the_turtle = Turtle()   # Global turtle
-the_circle = Circle((0, 0), 100)   # Global circle object
+ 
+the_turtle = Turtle()   # Init Global turtle
+the_circle = Circle((0, 0), 100)   # Init Global circle object
 
 def draw_circle(a_turtle, a_circle):
     """ (Turtle, Circle) -> turtle
@@ -20,7 +20,17 @@ def draw_circle(a_turtle, a_circle):
     Draw circle in the graphical window
     """
 
-    pass
+    x_pos, y_pos = a_circle.get_center()  # unpack center's coordinates
+    radius = a_circle.get_radius()
+    a_turtle.penup()                      # lift pen
+    a_turtle.setposition(x_pos, y_pos)     # Move pen to (x,y) position
+    a_turtle.pendown()                    # pen ready
+    a_turtle.dot()                          # draw dot: circle's center
+    a_turtle.penup()            # lift pen
+    a_turtle.setposition(x_pos, y_pos - radius)     # position pen to draw rim of circel
+    a_turtle.pendown()      # pen ready
+    a_turtle.circle(radius) # draw the circle
+    a_turtle.penup()    # lift pen
 
 def do_click(x_pos, y_pos):
     """ (int, int) -> turtle 
@@ -28,25 +38,30 @@ def do_click(x_pos, y_pos):
     Moves circle. packs up into a tuple the x and y coordinates it receives 
     passes this tuple on to the global Circle object circ’s move method.
     """
-    pass
+    the_circle.move((x_pos,y_pos)) # Move to new pos
+    redraw()
 
 def do_up():
     """
     Enlarge
     """
-    pass
+    the_circle.grow()
+    redraw()
+
 
 def do_down():
     """
     Make smaller
     """
-    pass
+    the_circle.shrink()
+    redraw()
 
 def redraw():
     """
     Clear and draw again
     """
-    pass
+    the_turtle.clear()
+    draw_circle(the_turtle, the_circle)
 
 def main():
     """Use Turtle graphics to render Circle objects in a graphical window."""
