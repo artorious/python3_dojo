@@ -2,80 +2,110 @@
 """ Use Turtle graphics to render Circle objects in a graphical window.
 
 An interactive program that allows the user to place the image of a Circle
-object in the window via a mouse click. 
-Susequent mouse clicks move the circle to the mouse position. 
-Users can us the <Up> and <Down> cursor keys to enlarge and reduce the size 
-of the circle. 
+object in the window via a mouse click.
+Susequent mouse clicks move the circle to the mouse position.
+Users can us the <Up> and <Down> cursor keys to enlarge and reduce the size
+of the circle.
 """
 
-from turtle import Turtle, Screen, mainloop, delay, clear
+from turtle import Turtle, Screen, mainloop
 from custom_modules.circle import Circle
- 
-the_turtle = Turtle()   # Init Global turtle
-the_circle = Circle((0, 0), 100)   # Init Global circle object
 
-def draw_circle(a_turtle, a_circle):
-    """ (Turtle, Circle) -> turtle
+class GraphicalCircle(object):
+    """
+    Wraps Circle object with a primitive graphical interface.
+    Each GraphicalCircle object maintains its own circle object
+    and Turtle graphics Turtle object.
+    """
+    def __init__(self, center, radius):
+        """ (GraphicalCircle, tuple, int) -> turtle
+        
+        Initializes a graphical circle object 
+        The circle is centered at the position <center>.
+        The circle radius is set to the <radius>
+        """
+        # Make a turtle graphics object to do the drawing.
+        # Assign it to an instance variable the_turtle, 
+        # so other methods can access it
+        self.the_turtle = Turtle()
+        self.the_turtle.speed(0)            # fastest turtle
+        self.the_turtle.hideturtle()        # hide turtle
+        the_screen = Screen()               # Create local screen object: Receive user input
+        the_screen.delay(0)                 # trace drawing delay - slow
+        the_screen.listen()                 # focus on keystrokes
+        # Mouse click re-positions the circle
+        the_screen.onclick(self.move)       # Set mouse press handler - 
+        # Up cursor key calls the increases method to expand the circle
+        the_screen.onkey(self.increase, 'Up')       # Set "up" cursor key handler
+        # Down cursor key calls the deecrease method to contract the circle
+        the_screen.onkey(self.decrease, 'Down')     # Set "Down" cursor key handler
+        
+        # Make a circle object
+        # Assign it to an instance variable the_circle, 
+        # so other methods can access it
+        self.the_circle = Circle(center, radius)
+        mainloop()      # Start event loop
     
-    Draw circle in the graphical window
-    """
+    def draw(self):
+        """ (GraphicalCircle) -> turtle
+        Draw circle in the graphical window
+        """
+        x_pos, y_pos = self.the_circle.get_center()         # unpack center's coordinates
+        radius = self.the_circle.get_radius()
+        self.the_turtle.penup()                             # lift pen
+        self.the_turtle.setposition(x_pos, y_pos)           # Move pen to (x,y) position
+        self.the_turtle.pendown()                           # pen ready
+        self.the_turtle.dot()                               # draw dot: circle's center
+        self.the_turtle.penup()                             # lift pen
+        self.the_turtle.setposition(x_pos, y_pos - radius)  # position pen to draw rim of circel
+        self.the_turtle.pendown()                           # pen ready
+        self.the_turtle.circle(radius)                      # draw the circle
+        self.the_turtle.penup()                             # lift pen
 
-    x_pos, y_pos = a_circle.get_center()  # unpack center's coordinates
-    radius = a_circle.get_radius()
-    a_turtle.penup()                      # lift pen
-    a_turtle.setposition(x_pos, y_pos)     # Move pen to (x,y) position
-    a_turtle.pendown()                    # pen ready
-    a_turtle.dot()                          # draw dot: circle's center
-    a_turtle.penup()            # lift pen
-    a_turtle.setposition(x_pos, y_pos - radius)     # position pen to draw rim of circel
-    a_turtle.pendown()      # pen ready
-    a_turtle.circle(radius) # draw the circle
-    a_turtle.penup()    # lift pen
+    def move(self, x_pos, y_pos):
+        """ (int, int) -> turtle 
 
-def do_click(x_pos, y_pos):
-    """ (int, int) -> turtle 
-    
-    Moves circle. packs up into a tuple the x and y coordinates it receives 
-    passes this tuple on to the global Circle object circ’s move method.
-    """
-    the_circle.move((x_pos,y_pos)) # Move to new pos
-    redraw()
+        Moves the circle's center to <x_pos> and <y_pos>
+        Delegates the work to the contained Circle object
+        """
+        self.the_circle.move((x_pos,y_pos)) # Move to new pos
+        self.redraw()
 
-def do_up():
-    """
-    Enlarge
-    """
-    the_circle.grow()
-    redraw()
+    def increase(self):
+        """ (GraphicalCircle) -> turtle
+        
+        Increase the circle's radius by 1 unit, then redraw the circle
+        Delegates the work to the contained Circle object
+        """
+        self.the_circle.grow()
+        self.redraw()
 
+    def decrease(self):
+        """ (GraphicalCircle) -> turtle
+        
+        Decrease the circle's radius by 1 unit, then redraw the circle
+        Delegates the work to the contained Circle object
+        """
+        self.the_circle.shrink()
+        self.redraw()
 
-def do_down():
-    """
-    Make smaller
-    """
-    the_circle.shrink()
-    redraw()
+    def redraw(self):
+        """ (GraphicalCircle) -> turtle
+        Clears the graphical window, then draws the circle
+        """
+        self.the_turtle.clear()
+        self.draw()
 
-def redraw():
-    """
-    Clear and draw again
-    """
-    the_turtle.clear()
-    draw_circle(the_turtle, the_circle)
 
 def main():
-    """Use Turtle graphics to render Circle objects in a graphical window."""
-    delay(0)                    # trace drawing delay - slow
-    the_turtle.speed(0)         # fastest turtle
-    the_turtle.hideturtle()     # hide turtle 
-    the_screen = Screen()       # Create screen object: Receive user input
-    the_screen.listen()         # focus on keystrokes
-    
-    
-    the_screen.onclick(do_click)    # Set mouse press handler - 
-    the_screen.onkey(do_up, 'Up')   # Set "up" cursor key handler
-    the_screen.onkey(do_down, 'Down')   # Set "Down" cursor key handler
-    mainloop()      # Start event loop     
+    """Allows the user to manipulate a graphical circle object"""
+     
+    the_circle = GraphicalCircle((0, 0), 100) # Make a graphical circle object
+    print("Program done")
 
 if __name__ == '__main__':
     main()
+
+
+
+
