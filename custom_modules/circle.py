@@ -11,58 +11,71 @@ class Circle():
     """ Represents a geometric circle object """
 
     def __init__(self, center, radius):
-        """ (Circle, tuple, float) -> Init
+        """ (Circle, tuple, float) -> tuple, float
 
         Initialize instance variables
         The Circle's center's <center> and <radius>;
         negative radius not accepted
         """
-        pass
+        # Disallow a negative radius
+        if radius < 0:
+            raise ValueError('Negative radius: NOT VALID')
+
+        self.center = center
+        self.radius = radius
     
     def get_radius(self):
         """ (Circle) -> float 
         
         Return the radius of the circle 
         """
-        return
+        return self.radius
 
     def get_center(self):
         """ (Circle) -> tuple 
         
         Return the coordinates of the center
         """
-        return 
+        return self.center
 
     def get_area(self):     
         """ (Circle) -> float
+        
         Compute and Return the area of the circle
         """
-        return
+        from math import pi
+        return pi * self.radius * self.radius
     
     def get_circumference(self):
         """ (Circle) -> float
+        
         Compute and Return the circumference of the circle
         """
-        return
+        from math import pi
+        return 2 * pi * self.radius
     
     def move(self, new_pos):
-        """ (Circle, tuple) -> variable re-assignment
+        """ (Circle, tuple) -> tuple
         
         Moves the center of the circle to point <new_pos>
+        performs variable re-assignment
         """
-        pass
+        self.center = new_pos
     
     def grow(self):
-        """ (Circle) -> variable re-assignment
+        """ (Circle) -> float
 
         Increases the radius of the circle
+        performs variable re-assignment
         """
-        pass
+        self.radius += 1
 
     def shrink(self):
-        """ (Circle) -> variable re-assignment
+        """ (Circle) -> float
 
         Decreases the radius of the circle;
         does not affect a circle with radius zero
+        performs variable re-assignment
         """
-        pass
+        if self.radius > 0:
+            self.radius -= 1
