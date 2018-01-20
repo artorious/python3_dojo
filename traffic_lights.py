@@ -8,6 +8,8 @@ Normal traffic light operating procedure changes from;
 """
 from tkinter import Tk, Canvas
 from tkinter.ttk import Button, Frame
+from random import choice, randrange
+from functools import partial
 from custom_modules.traffic_light_object import TrafficLight
 
 class TrafficLightWindow(object):
@@ -22,7 +24,7 @@ class TrafficLightWindow(object):
         do_button_press method.
         """
         root = Tk()             # Create the main window
-        root.title('Traffic Lights')    # Set title bar text
+        root.title('Traffic Light')    # Set title bar text
         
         # Create widget container
         frame = Frame(root) # Create a frame to hold the widgets
@@ -46,7 +48,7 @@ class TrafficLightWindow(object):
         root.mainloop() # Start GUI event loop
 
     def do_button_press(self):
-        """(TrafficLightWindow) -> 
+        """(TrafficLightWindow) -> TrafficLight
 
         The window manager calls this function when the user presses
         the graphical button.
@@ -55,7 +57,51 @@ class TrafficLightWindow(object):
         """
         self.light.change()
 
+class MultisizeLightWindow(object):
+    """
+    Graphical window that dispalys multiple traffic lights (different sizes) 
+    and change buttons.
+    """
+    def __init__(self):
+        """ (MultisizeLightWindow) -> list
+        """
+        root = Tk()     # Create the main window
+        root.title('Multiple Traffic Lights') # Set title bar text
+        self.lights = [] # Init list of traffic light objects
+
+        # The outer frame holds the nine inner frames that each contain 
+        # a canvas and a button
+        outer_frame = Frame(root)
+        outer_frame.pack()
+
+        # Create nine drawing surfaces within the window
+        # determine the exact location and size of each light it creates
+        for i in range(1, 10):
+            # Place widget: One traffic light object and one button object
+            f = Frame(outer_frame, borderwidth=2, relief='groove')
+            # position widget within grid of rows and columns within its parent
+            f.grid(row=0, column=i)
+            c = Canvas(f, width=20 * i, height=250)
+            c.grid(row=0, column=0)
+            self.lights.append(TrafficLight(5*i, 10, 10 * i, c))
+            # b =  Button(f, text='Change', command=lambda x=i: lights[x - 1].change())
+            b = Button(
+                f, text='Change', command=partial(self.do_button_press, i - 1)
+            ) 
+            b.grid(row=1, column=0)
+        
+        root.mainloop() # Start the GUI event loop           
+            
+    def do_button_press(self, idx):
+        """(TrafficLightWindow) -> TrafficLight
+
+        The window manager calls this function when the user presses
+        the graphical button.
+        Method simply delegates its work to the change method of its TrafficLight
+        instance variable.
+        """
+        self.lights[idx].change()
 
 if __name__ == '__main__':
-    # Create and execute a traffic light window
-    TrafficLightWindow()
+    # Create and execute a traffic lights window
+    MultisizeLightWindow()
