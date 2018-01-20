@@ -21,7 +21,11 @@ class FunctionTester(object):
         handle the accounting (counts). Creates a FunctionTester object,
         Resets the counts to zero
         """
-        pass
+        self.__error_count = self.__total_count = 0
+        print('+---------------------------------')
+        print('|\t Testing                       ')
+        print('+---------------------------------')
+
     
     def check(self, msg, expected, func, *args):
         """(FunctioTester, str, value, func, *args ) -> bool
@@ -41,11 +45,36 @@ class FunctionTester(object):
         Returns True if the function passed the test;
         otherwise, returns False
         """
-        return 
+        result = True # Test passed unless we determine otherwise
+        print('\t', msg, '\t', end=' ')
+        self.__total_count += 1         # Count this test
+        
+        try:
+            actual = func(*args)        # Apply function to arguments
+            
+            if expected == actual:
+                print('OK')
+            
+            else:
+                self.__error_count += 1  # Count this failed test
+                print('*** Failed!\n\tExpected: {0}\n\tActual: {1}'.format(
+                    expected, actual))
+                result = False # Test failed
+
+        except Exception as eerr:
+            self.__error_count += 1 # Count this failed test
+            print('******* Exception: {0}'.format(eerr))
+            result = False  # Test Failed
+        
+        return result # Notify client of tst result
     
     def report_results(self):
         """ Prints the testing statistics after performing all the tests. 
         
         Provides the error statistics for all the tests performed
         """
-        pass
+        print('+--------------------------------')
+        print('| {0} Tests run'.format(self.__total_count))
+        print('| {0} Passed'.format(self.__total_count - self.__error_count))
+        print('| {0} Failed'.format(self.__error_count))
+        print('+--------------------------------')
