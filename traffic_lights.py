@@ -57,7 +57,7 @@ class TrafficLightWindow(object):
         """
         self.light.change()
 
-class MultisizeLightWindow(object):
+class MultisizeLightsWindow(object):
     """
     Graphical window that dispalys multiple traffic lights (different sizes) 
     and change buttons.
@@ -102,6 +102,47 @@ class MultisizeLightWindow(object):
         """
         self.lights[idx].change()
 
+class RandomLightsWindow(object):
+    """
+    Graphical window that displays multiple random traffic lights of 
+    different sizes
+    """
+    def __init__(self):
+        """ (MultisizeLightWindow) -> list
+        """
+        root = Tk()     # Create the main window
+        root.title('Multiple Random Traffic Lights') # Set title bar text
+        f = Frame(root)
+        f.pack()
+        canvas = Canvas(f, width=800, height=600) # Create a drawing surface within the window
+        color_list = ['red', 'yellow', 'green']
+        self.lights_list = [] # Init list of traffic light objects
+        
+        for i in range(50):
+            self.lights_list.append(TrafficLight(
+                randrange(2, 700),
+                randrange(2, 400),
+                randrange(5, 120),
+                canvas,
+                choice(color_list)
+            ))
+        # Create a graphical button and ensure it calls the do_button_press
+        # function when the user presses it
+        button = Button(f, text='Change', command=self.do_button_press)
+        # Position button and canvas objects
+        button.grid(row=0, column=0)
+        canvas.grid(row=0, column=1)
+
+        root.mainloop() # Start the GUI event loop
+    
+    def do_button_press(self):
+        """
+        The window manager calls this function when the user
+        presses the graphical button
+        """
+        for light in self.lights_list:
+            light.change()
+
 if __name__ == '__main__':
-    # Create and execute a traffic lights window
-    MultisizeLightWindow()
+    # Create and execute a multiple random traffic lights window
+    RandomLightsWindow()
