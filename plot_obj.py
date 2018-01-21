@@ -36,7 +36,29 @@ class Plotter(object):
         the x_increament value.
         Draws the x-axis and y-axes
         """
-        pass
+        # Init
+        self.pen = Pen()    # The plotter object's pen
+        self.screen = Screen() # The plotter object's sceen
+
+        self.pen.speed(0)   # Speed up rendering
+        self.screen.tracer(0, 0) # DONT draw pen while drawing
+
+        # Establish global x and y ranges
+        self.min_x, self.max_x = min_x, max_x
+        self.min_y, self.max_y = min_y, max_y
+
+        self.screen.setup(width=width, height=height) # Set up window size, in pixels
+
+        # set up screen size, in pixels
+        self.screen.screensize(width, height)
+        self.screen.setworldcoordinates(min_x, min_y, max_x, max_y)
+
+        # x-axis distance that correspond to one pixel in window distance
+        self.x_increament = (max_x - min_x) / width
+        self.draw_grid(20)
+        self.draw_axes()
+        self.screen.title('Plot')
+        self.screen.update()
 
     def __del__(self): 
         """ (Plotter) -> stdout
@@ -49,7 +71,7 @@ class Plotter(object):
         Among other times, this happens when the program’s execution 
         terminates.
         """
-        pass
+        print('Done Printing')
 
     def draw_axes(self, grid=False):
         """ (Plotter, bool) -> turtle
@@ -59,8 +81,20 @@ class Plotter(object):
         An option Boolean parameter <grid> controls the drawing of
         accessory horizontal and vertical lines
         """
-        pass
+        if grid:
+            self.draw_grid(20)
+        self.pen.hideturtle()   # Make pen invisible
+        prev_width = self.pen.width()
+        self.pen.width(2)
 
+        # Draw x axis
+        self.pen.color('black')
+        self.draw_arrow(self.min_x, 0, self.max_x, 0)
+
+        # Draw y axis
+        self.draw_arrow(0, self.min_y, 0, self.max_y)
+        self.pen.width(prev_width)
+        
     def draw_grid(self, num):
         """ (Plotter, int) -> turtle
 
@@ -68,8 +102,28 @@ class Plotter(object):
         lines on the plot. Parameter <num> control the frequency of the 
         reference lines.
         """
-        pass
-    
+        self.pen.up()
+        # self.pen.setposition(self.min_x, self.min_y)
+        inc = (self.max_x - self.min_y) / num
+        self.pen.color('lightblue')
+        x = self.min_x
+
+        while x <= self.max_x:
+            self.pen.setposition(x, self.min_y)
+            self.pen.down()
+            self.pen.setposition(x, self.min_y)
+            self.pen.up()
+            x += inc # Next x
+        inc = (self.max_y - self.min_y) / num
+        y = self.min_y
+        
+        while y <= self.max_y:
+            self.pen.setposition(self.min_x, y)
+            self.pen.down()
+            self.pen.setposition(self.max_x, y)
+            self.pen.up()
+            y += inc # Next y
+
     def draw_arrow(self, x1, y1, x2, y2): 
         """ (Plotter, int, int, int, int) -> turtle
 
@@ -77,7 +131,19 @@ class Plotter(object):
         Expects four numeric parameters representing the (x 1 , y 1 ) tail end 
         point and (x 2 , y 2 ) head end point of the arrow.
         """
-        pass
+        # Draw arrow shaft
+        self.pen.up()
+        self.pen.setposition(x1, y1) # Move the pen starting point
+        self.pen.down()     # Draw line bottom to top
+        self.pen.setposition(x2, y2) # Move the pen starting point
+        
+        # Draw arrow head
+        dy = y2 - y1
+        dx = x2 - x1
+
+        angle = atan2(dy, dx) * 180 / pi
+        self.pen.setheading(angle)
+        self.pen.stamp()
 
     def plot_function(self, f, color, update=True): 
         """ (Plotter, func, str, bool) -> turtle
@@ -90,7 +156,20 @@ class Plotter(object):
         immediately or requires the client to call the update method after a 
         series of plots (defaults to True).    
         """
-        pass
+        # Move pen to starting position
+        self.pen.up()
+        self.pen.setposition(self.min_x, f(self.min_x))
+        self.pen.color(color)
+        self.pen.down()
+
+        # Iterate over the range of x values for min_x <= x < max_x
+        x = self.min_x
+        while x < self.max_x:
+            self.pen.setposition(x, f(x))
+            x += self.x_increament # Next x
+
+        if update:
+            self.screen.update()
 
     def plot_data(self, data, color, update=True): 
         """ (Plotter, list, str, bool) -> turtle
@@ -101,21 +180,30 @@ class Plotter(object):
         immediately or requires the client to call the update method after a 
         series of plots (defaults to True).
         """
-        pass
+        self.pen.up()
+        self.pen.setposition(data[0][0], data[0][1])
+        self.pen.color(color)
+        self.pen.down()
+
+        # Plot the points in th data set
+        for x, y in data:
+            self.pen.setposition(x, y)
+        if update:
+            self.screen.update()
 
     def update(self):
         """ (Plotter) -> turtle
         
         Draws any pending actions to the screen 
         """
-        pass
+        self.screen.update()
 
     def setcolor(self, color): 
         """ (Plotter, str) -> turtle
         
         Sets the current drawing color. 
         """
-        pass
+        self.pen.color(color)
     
     def onclick(self, fun): 
         """ (Plotter, func) -> turtle
@@ -127,7 +215,7 @@ class Plotter(object):
         The function <fun> must accept two integer parameters that represent
         the (x, y) location of the mouse when the click occurred
         """
-        pass
+        self.screen.onclick(fun)
     
     def interact(self): 
         """ (Plotter) -> turtle
@@ -135,15 +223,6 @@ class Plotter(object):
         Sets the plotter to interactive mode, enabling the user to 
         provide mouse and keyboard input.
         """
-        pass
+        self.screen.mainloop()
 
-
-if __name__ == '__main__':
-    Plotter()
-
-    
-
-    
-
-    
 
