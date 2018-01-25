@@ -11,11 +11,29 @@ from custom_modules.rational_numbers import Rational
 def get_file():
     """ () -> tuple
 
-    Returns as a tuple the file name entered by the user and the 
-    open file object. If the file exceeds three atempts of opening
-    successfully, an IOError exception is raised. 
+    Prompts for a file name to open, returning both the file name and 
+    associated file object as a tuple. If the file exceeds three atempts 
+    of opening successfully, an IOError exception is raised. 
     """
-    return 
+    file_name = input('Enter file name:\n>>> ')
+    input_file_opened = False
+    num_attempts = 1
+
+    while not input_file_opened and num_attempts < 3:
+        
+        try:
+            input_file = open(file_name, 'r')
+            input_file_opened = True
+
+        except IOError:
+            print('Oopss... File open Error!\n')
+            num_attempts += 1
+            file_name = input('Enter file name:\n>>> ')
+
+    if num_attempts == 3:
+        raise IOError('Exceeded number of file open attempts')
+
+    return (file_name, input_file) 
 
 def remove_measure(line):
     """ (str) -> str
@@ -33,7 +51,7 @@ def scan_as_fraction(line):
     '2' would return as fraction 2/1, and '2 1/2' would return as fraction 
     value 3/2.
     """
-
+    
     return
 
 def convert_line(line, factor):
