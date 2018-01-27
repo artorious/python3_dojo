@@ -41,7 +41,13 @@ def remove_measure(line):
     Returns provided line with any initial digits and fractions
     (and any sorrounding blanks) removed.
     """
-    return
+    char_track = 0
+    blank_char = ' '
+
+    while char_track < len(line) and (line[char_track].isdigit() or \
+            line[char_track] in ('/', blank_char) ) :
+        char_track += 1
+    return line[char_track:len(line)]
 
 def scan_as_fraction(line):
     """ (str) -> Rational
@@ -51,8 +57,44 @@ def scan_as_fraction(line):
     '2' would return as fraction 2/1, and '2 1/2' would return as fraction 
     value 3/2.
     """
-    
-    return
+    # Init
+    completed_scan = False # controls scan for initial digit and '/'
+    value_as_frac = Rational(0,1) # Fraction value 0/1, Accumulates values when both integer and a fractional values are found
+
+    while not completed_scan:
+        # Init
+        char_track = 0 # Increamented to scan past each character in line that is a digit char
+        
+        while char_track < len(line) and line[char_track].isdigit():
+            char_track += 1
+
+        numerator = int(line[0:char_track]) # range of chars scaned so far
+        
+        if char_track < len(line) and line[char_track] == '/':  # Scan for fractional notation
+            char_track += 1
+            start = char_track # Track begining of a new substring of digits to be scanned
+            # Scan chars for denominator, until a non-digit is found
+            while char_track < len(line) and line[char_track].isdigit():
+                char_track += 1
+
+            denominator = int(line[start : char_track])    
+        
+        else:
+            # '/' fraction notation not found. E.g 2, is returned as 2/1
+            denominator = 1
+        # update fraction to current value. 
+        value_as_frac += Rational(numerator, denominator) 
+
+        if char_track == len(line):
+            completed_scan = True   # Terminate scan
+        else:
+            # Next character to check for digit
+            line = line[char_track:len(line)].strip()
+
+            if not line[0].isdigit():
+                completed_scan = True  # Terminate scan
+                
+    return value_as_frac
 
 def convert_line(line, factor):
     """ (str, Rational) -> str
@@ -61,7 +103,18 @@ def convert_line(line, factor):
     by factor. Othewise, returns line unaltered
     (e.g., for a factor of 2, '1/4 cup' returns a '1/2 cup'.)
     """
-    return
+    if line[0].isdigit():
+        blank_char = ' '
+        frac_meas = scan_as_fraction(line).__multiply__(factor)
+
+        if frac_meas.get_denominator() == 1:
+            frac_meas = frac_meas.get_numerator()
+        conv_line = str(frac_meas) + blank_char + remove_measure(line)
+
+    else:
+        conv_line = line
+
+    return conv_line
 
 def main():
     """ Recipe Conversion """
@@ -84,7 +137,7 @@ def main():
         output_file_name = 'conv_' + file_name
         output_file = open(output_file_name, 'w')
 
-        # Convert recipe
+        # Convert recipe: line-by-line
         empty_str = ''
         recipe_line = input_file.readline()
 
