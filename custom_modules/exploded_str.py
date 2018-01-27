@@ -7,9 +7,7 @@ class ExplodedStr(str):
     """
     
     def __init__(self, value=''):
-        """ (ExplodedStr, str) -> str
-        init of str class 
-        """
+        """ (ExplodedStr, str) -> str """
         str.__init__(value)   
 
     def explode(self):
