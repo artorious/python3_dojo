@@ -2,7 +2,7 @@
 """ A play at Rational numbers (Fractions)
 
 Uses the Python’s dunder notation to better protect instance variables.
- 
+
 NOTE: 
     This form of protection (information hiding) defends against a 
     conscientious but careless programmer but not a malicious one.
@@ -10,6 +10,9 @@ NOTE:
 
 class Rational(object):
     """Represents a rational number (fraction)
+
+    Represents values as common fractions, that is, with just a numerator 
+    and denominator. Thus, the value one and a half is represented as 3/2.
 
     NOTE:
         A rational number is the ratio of two integers. 
@@ -87,7 +90,7 @@ class Rational(object):
         return a 
 
     def __repr__(self):
-        """ (Rational) -> str
+        """ (Rational) -> stdout
 
         Make a string representation of a Rational number x/y
         """
@@ -126,7 +129,7 @@ class Rational(object):
     def __multiply__(self, r_fraction):
         """ (Rational, Rational) -> Rational
         
-        Returns a new rduced fraction equal to <self> * <r_fraction>
+        Returns a new reduced fraction equal to <self> * <r_fraction>
         """
         numer = self.__numerator * r_fraction.get_numerator()
         denom = self.__denominator * r_fraction.get_denominator()
