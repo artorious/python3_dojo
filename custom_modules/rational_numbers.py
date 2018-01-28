@@ -92,7 +92,7 @@ class Rational(object):
     def __repr__(self):
         """ (Rational) -> stdout
 
-        Make a string representation of a Rational number x/y
+        Display a string representation of a Rational number x/y
         """
         return '{0}/{1}'.format(self.__numerator, self.__denominator)
 
@@ -126,7 +126,7 @@ class Rational(object):
 
         return self + (-r_fraction)
 
-    def __multiply__(self, r_fraction):
+    def __mul__(self, r_fraction):
         """ (Rational, Rational) -> Rational
         
         Returns a new reduced fraction equal to <self> * <r_fraction>
@@ -239,7 +239,7 @@ def main():
         fract1, fract2, fract3))
     print()
     print('{0} * {1} = {2}'.format(
-        fract1, fract2, fract1.__multiply__(fract2)))
+        fract1, fract2, fract1.__mul__(fract2)))
     print('{0} + {1} = {2}'.format(
         fract1, fract2, fract1.__add__(fract2)))
     print('{0} - {1} = {2}'.format(
@@ -292,7 +292,7 @@ def main():
         fract1, fract2))
     print()
     print('{0} * {1} = {2}'.format(
-        fract1, fract2, Rational.__multiply__(fract1, fract2)))
+        fract1, fract2, Rational.__mul__(fract1, fract2)))
     print('{0} + {1} = {2}'.format(
         fract1, fract2, Rational.__add__(fract1, fract2)))
     print('{0} - {1} = {2}'.format(
