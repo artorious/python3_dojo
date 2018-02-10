@@ -144,6 +144,7 @@ class RandomLightsWindow(object):
             light.change()
 
 if __name__ == '__main__':
-    # Create and execute a multiple random traffic lights window
+    # Create and execute one, multiple or random traffic lights 
+    TrafficLightWindow()
     # RandomLightsWindow()
-    MultisizeLightsWindow()
+    # MultisizeLightsWindow()

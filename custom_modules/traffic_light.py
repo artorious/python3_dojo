@@ -3,7 +3,7 @@
 
 Illustrates the concept of composition using higher-level objects
 
-An app that graphically models an intersection containing traffic lights. 
+Utilized by an app that graphically models traffic lights. 
 Normal traffic light operating procedure changes from; 
     - red to green, 
     - green to yellow, 
