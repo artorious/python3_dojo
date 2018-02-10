@@ -1,17 +1,15 @@
 #!/usr/bin/env python3
 """ A play at Python Custom Types - Circle Objects
 
-NOTE:
-    A software object generally bundles together data (instance variables)
-    and functionality (methods). The instance variables and methods of an
-    object comprise its members. The class of an object defines the object\'s
-    basic structure and capabilities.
+Attributes:
+    center: A tuple representing the Circle's center's (x,y) coordinates
+    radius: An integer representing the Circle's radius
     """
 class Circle(object):
     """ Represents a geometric circle object """
 
     def __init__(self, center, radius=1):
-        """ (Circle, tuple, float) -> tuple, float
+        """ (Circle, tuple, float) -> Circle
 
         Initialize instance variables
         The Circle's center's <center> and <radius>;

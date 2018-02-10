@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" A play at Polymorphism 
+""" A play at Polymorphism - Manipulating geometric shapes
 
 NOTE: The word polymorphism derives from Greek meaning “something that takes 
 many forms.” In object-oriented programming, polymorphism allows objects of 
@@ -10,10 +10,7 @@ same general type.
 class Shape(object):
     """ Shape class 
     
-    All Shape objects have an x, y coordinate (with corresponding getter and 
-    setter methods)
-    In addition, Shape objects can also calculate their areas.
-    How a shape’s area is computed, however, depends on what shape it is. 
+    Manipulating geometric shapes 
     """
     def __init__(self, x_pos, y_pos):
         """ (Shape, int, int) -> float, float
@@ -29,6 +26,14 @@ class Shape(object):
         Returns  (<x_pos>, <y_pos>) coordinates
         """
         return (self.__x_pos, self.__y_pos)
+    
+    def set_xy_loc(self, x_pos, y_pos):
+        """ (Shape, int, int) -> float, float
+
+        Set <x_pos>, <y_pos> coordinates
+        """
+        self.__x_pos = x_pos 
+        self.__y_pos = y_pos
 
     def calc_area(self):
         """ (Shape) -> Exception
@@ -36,6 +41,17 @@ class Shape(object):
         """
         raise NotImplementedError('Method calc_area not implemented')
 
+    def draw(self):
+        """ (Shape) -> Exception
+        Abstract method to handle drawing of shape
+        """
+        raise NotImplementedError('Method draw not implemented')
+
+    def resize(self):
+        """ (Shape) -> Exception
+        Abstract method to handle resizing of shape 
+        """
+        raise NotImplementedError('Method resize not implemented')
 
 class Circle(Shape):
     """

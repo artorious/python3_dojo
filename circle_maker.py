@@ -18,7 +18,7 @@ class GraphicalCircle(object):
     and Turtle graphics Turtle object.
     """
     def __init__(self, center, radius):
-        """ (GraphicalCircle, tuple, int) -> turtle
+        """ (GraphicalCircle, tuple, int) -> GraphicalCircle
         
         Initializes a graphical circle object 
         The circle is centered at the position <center>.
@@ -95,7 +95,6 @@ class GraphicalCircle(object):
         """
         self.the_turtle.clear()
         self.draw()
-
 
 def main():
     """Allows the user to manipulate a graphical circle object"""

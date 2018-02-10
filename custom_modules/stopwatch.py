@@ -11,7 +11,6 @@ class Stopwatch(object):
     Provides stopwatch objects that a programmer can use to time the
     execution time of portions of a program
     """
-
     def __init__(self):
         """ 
         Makes a new stopwatch ready for timing 
