@@ -22,38 +22,49 @@ class MovableTimer(GraphicalObject, DigitalTimer):
         (x_pos, y_pos) is the display's initial position
         """
         super(MovableTimer, self).__init__(**kwargs)
-        pass
+        print('Initializing MovableTimer')
+        self.screen.listen()                        # Receive keypress events
+        self.screen.onkey(self.start_timer, 's')    # Key to start the timer
+        self.screen.onkey(self.stop_timer, 't')     # Key to stop the timer
+        self.screen.onkey(self.reset_timer, 'r')    # Key to reset the timer     
+        self.screen.ontimer(self.update, 500)       # Set timer event
     
     def draw(self):
         """
         Renders the digital stopwatch within the window
         """
-        pass
+        self.turtle.clear()     # clear screen
+        self.turtle.penup()     # Move pen
+        self.turtle.setpos(self.x_pos, self.y_pos)
+        self.turtle.pendown()
+        self.turtle.write(self.digital_time(), font=('Arial', 48, 'normal'))
 
     def start_timer(self):
         """
         Starts the timer.
         """
-        pass
+        self.start()
     
     def stop_timer(self):
         """
         Stops the timer.
         """
-        pass
+        self.stop()
     
     def reset_timer(self):
         """
         Resets the timer to 00:00:00.
         """
-        pass
+        self.reset()
     
     def update(self):
         """
         Updates the program's view  of the global stopwatch object.
         Called every one-half second
         """
-        pass
+        self.draw()     # Draw the digital display
+        # call the update function again after one half second
+        self.screen.ontimer(self.update, 500) 
 
 def main():
     # test
