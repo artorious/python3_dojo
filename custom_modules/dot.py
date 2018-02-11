@@ -14,7 +14,7 @@ class Dot(GraphicalObject):
         Inits a dot object with a given Turtle screen, pen, and
         (x, y) coordinates
         """
-        super().__init__(**kwargs)   # Explicitly invoke superclass constructor
+        super(Dot, self).__init__(**kwargs)   # Explicitly invoke superclass constructor
     
     def draw(self):
         """ Renders the dot in the Turtle graphics window """

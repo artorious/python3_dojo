@@ -18,7 +18,7 @@ class GraphicalObject(Top):
             turtle is the Turtle graphics pen
             intially appear at location (x, y)
         """
-        super().__init__(**kwargs)              # Explicitly invoke superclass constructor
+        super(GraphicalObject, self).__init__(**kwargs) # Explicitly invoke superclass constructor
         print('Initializing graphical object')
         self.screen = kwargs['screen']
         self.turtle = kwargs['turtle']

@@ -17,7 +17,7 @@ class Top(object):
 class A(Top):
     def __init__(self, **kwargs):
         print('Making an A object')
-        super().__init__(**kwargs)
+        super(A, self).__init__(**kwargs)
         self.value_A = 0
 
 class B(Top):
@@ -25,12 +25,12 @@ class B(Top):
         print('Making a B object')
         self.value_B = kwargs['val']
         kwargs.pop('val')   # Remove the parameter from the kwargs
-        super().__init__(**kwargs)
+        super(B, self).__init__(**kwargs)
 
 class C(A, B):
     def __init__(self, **kwargs):
         print('Making a C object')
-        super().__init__(**kwargs)
+        super(C, self).__init__(**kwargs)
         self.value_C = 2 
     
 if __name__ == '__main__':

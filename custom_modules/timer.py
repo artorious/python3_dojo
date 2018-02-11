@@ -16,7 +16,7 @@ class Timer(Top):
         """ 
         Makes a new stopwatch ready for timing. 
         """
-        super().__init__(**kwargs) # Explicitly invoke superclass constructor
+        super(Timer, self).__init__(**kwargs) # Explicitly invoke superclass constructor
         print('Initializing stopwatch')
         self.reset()
     
