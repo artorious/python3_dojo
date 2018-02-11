@@ -23,4 +23,12 @@ class DigitalTimer(Timer):
 
         # Each digit occupies two spaces; pad with leading zeros, if necessary
         return '{0:0>2}:{1:0>2}:{2:0>2}'.format(hours, minutes, seconds)
-        
+
+
+if __name__ == '__main__':
+    from time import sleep
+    timer = DigitalTimer()
+    timer.start()
+    sleep(5)
+    timer.stop()
+    print('Five sec sleep: {0}'.format(timer.elapsed()))
