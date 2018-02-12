@@ -28,7 +28,7 @@ class FunctionTester(object):
 
     
     def check(self, msg, expected, func, *args):
-        """(FunctioTester, str, value, func, *args ) -> bool
+        """(FunctionTester, str, value, func, *args ) -> bool
 
         <msg> - a human-readable message to uniquely identify the 
         test case (so the tester can determine which test failed), 
