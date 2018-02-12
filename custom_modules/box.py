@@ -2,7 +2,7 @@
 """ Draw boxes on a turtle screen
 
 NOTE:
-    Use with box_adapter.py
+    Adapted by box_adapter.py to cooperate with the GraphicalObject hierachy
 """
 
 class Box(object):
@@ -45,5 +45,5 @@ class Box(object):
         self._pen.left(90)
         self._pen.forward(self._width)
         self._pen.left(90)
-        self._pen.endfill()
+        self._pen.end_fill()
         
