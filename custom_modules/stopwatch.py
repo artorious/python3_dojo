@@ -4,7 +4,8 @@
 Defines the structure and capabilities of a Stopwatch object
 """
 
-from time import clock
+# from time import clock
+from time import time 
 
 class Stopwatch(object):    
     """
@@ -24,7 +25,7 @@ class Stopwatch(object):
         on the stopwatch
         """
         if not self._running:
-            self._start_time = clock() - self._elapsed
+            self._start_time = time() - self._elapsed
             self._running = True # Clock now running
 
     def stop(self):
@@ -33,7 +34,7 @@ class Stopwatch(object):
         Updates the accumulated elapsed time.
         """
         if self._running:
-            self._elapsed = clock() - self._start_time
+            self._elapsed = time() - self._start_time
             self._running = False # Clock stopped
     
     def reset(self):
@@ -46,4 +47,18 @@ class Stopwatch(object):
         if not self._running:
             return self._elapsed
         else:
-            return clock() - self._start_time
+            return time() - self._start_time
+
+def main():
+    """ Test prog"""
+    from time import sleep
+
+    timer = Stopwatch()
+
+    timer.start()
+    sleep(10)
+    timer.stop()
+    print('Expected 10 secs: Got: {0}'.format(timer.elapsed()))
+
+if __name__ == '__main__':
+    main()

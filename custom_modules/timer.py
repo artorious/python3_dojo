@@ -4,7 +4,7 @@
 Defines the structure and capabilities of a Stopwatch 
 """
 
-from time import clock
+from time import time
 from multiple_inheritance_sample import Top
 
 class Timer(Top):    
@@ -27,7 +27,7 @@ class Timer(Top):
         on the stopwatch
         """
         if not self._running:
-            self._start_time = clock() - self._elapsed
+            self._start_time = time() - self._elapsed
             self._running = True    # Clock now running
 
     def stop(self):
@@ -36,7 +36,7 @@ class Timer(Top):
         Updates the accumulated elapsed time.
         """
         if self._running:
-            self._elapsed = clock() - self._start_time
+            self._elapsed = time() - self._start_time
             self._running = False   # Clock stopped
     
     def reset(self):
@@ -49,4 +49,4 @@ class Timer(Top):
         if not self._running:
             return self._elapsed
         else:
-            return clock() - self._start_time
+            return time() - self._start_time

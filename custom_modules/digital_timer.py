@@ -29,6 +29,6 @@ if __name__ == '__main__':
     from time import sleep
     timer = DigitalTimer()
     timer.start()
-    sleep(5)
+    sleep(15)
     timer.stop()
-    print('Five sec sleep: {0}'.format(timer.elapsed()))
+    print('Fiteen sec sleep: {0}'.format(timer.elapsed()))
