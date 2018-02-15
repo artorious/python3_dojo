@@ -19,18 +19,27 @@ def factorial_n(num):
         Computes num!
         Returns the factorial of <num>
     """
+    # Check for valid input
     if isinstance(num, int) and num >= 0:
-        if num == 0:
+        # Base Case - terminates recursion
+        if num == 0: 
             return 1
+        # Breakdown
         else:
             return num * factorial_n(num - 1) # n*(n - 1)!
+    
     else:
         return 'Expected Positive integer'
 
-
 if __name__ == '__main__':
-    print(__doc__)
-    
+    # run
+    from timer import Timer
     from get_integer_from_user import get_integer
-    
+
+    t = Timer()
+
+    t.start()
     print(factorial_n(get_integer()))
+    t.stop()
+    print(t.elapsed())
+    

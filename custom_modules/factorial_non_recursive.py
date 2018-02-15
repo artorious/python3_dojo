@@ -28,9 +28,38 @@ def factorial_n(num):
     else:
         return 'Expected Positive integer'
 
-if __name__ == '__main__':
-    print(__doc__)
+def factorial_v2(num):
+    """ (int) -> float
     
+        Computes num!
+        Returns the factorial of <num>
+    """
+    if isinstance(num, int) and num >= 0:
+        product = 1 # Init
+        if num == 0:
+            return product
+        for a_num in range(num, 0, -1):
+            product *= a_num
+        return product
+    else:
+        return 'Expected Positive integer'
+
+if __name__ == '__main__':
+    from timer import Timer
     from get_integer_from_user import get_integer
     
-    print(factorial_n(get_integer()))
+    player = get_integer()
+    t = Timer()
+    print('Test-time factorial_n()')
+    t.start()
+    print(factorial_n(player))
+    t.stop()
+    print(t.elapsed())
+    print('----------------------------')
+    print('Test-time factorial_v2()')
+    t.reset()
+    t.start()
+    print(factorial_v2(player))
+    t.stop()
+    print(t.elapsed())
+    

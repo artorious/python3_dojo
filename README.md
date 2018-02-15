@@ -2,6 +2,9 @@
 
 Simple Python3 scripts  
 
+# Notes
+[Unit Testing](notes/unittest.md)
+[Recursive Functions](notes/recursive_functions.md)
 
 # Attribution
 
